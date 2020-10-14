@@ -13,6 +13,8 @@
 		269765052536785600D6FF08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269765032536785600D6FF08 /* Main.storyboard */; };
 		269765072536785900D6FF08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269765062536785900D6FF08 /* Assets.xcassets */; };
 		2697650A2536785900D6FF08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269765082536785900D6FF08 /* LaunchScreen.storyboard */; };
+		2697651525367D0A00D6FF08 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651425367D0A00D6FF08 /* Cards.swift */; };
+		2697651925367D3E00D6FF08 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651825367D3E00D6FF08 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		269765062536785900D6FF08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		269765092536785900D6FF08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2697650B2536785900D6FF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2697651425367D0A00D6FF08 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		2697651825367D3E00D6FF08 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		269764FC2536785600D6FF08 /* PokemonTCGCompanionApp */ = {
 			isa = PBXGroup;
 			children = (
+				2697651325367CF200D6FF08 /* API */,
 				269764FD2536785600D6FF08 /* AppDelegate.swift */,
 				269764FF2536785600D6FF08 /* SceneDelegate.swift */,
 				269765012536785600D6FF08 /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				2697650B2536785900D6FF08 /* Info.plist */,
 			);
 			path = PokemonTCGCompanionApp;
+			sourceTree = "<group>";
+		};
+		2697651325367CF200D6FF08 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2697651425367D0A00D6FF08 /* Cards.swift */,
+				2697651825367D3E00D6FF08 /* Card.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +153,9 @@
 			files = (
 				269765022536785600D6FF08 /* ViewController.swift in Sources */,
 				269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */,
+				2697651925367D3E00D6FF08 /* Card.swift in Sources */,
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
+				2697651525367D0A00D6FF08 /* Cards.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
