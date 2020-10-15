@@ -8,7 +8,9 @@
 import UIKit
 
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class SearchViewController: UIViewController {
+  
+    
     //MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -21,7 +23,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         
         //TODO: add hidable UISearchController into the pages CollectionView with Scope bar [Pokemon, Energy, Trainer]
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "ENTER CARD NAME"
         navigationItem.searchController = searchController
@@ -29,7 +31,20 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     }
 
     
-    func updateSearchResults(for searchController: UISearchController) {
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    
+}
+
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }

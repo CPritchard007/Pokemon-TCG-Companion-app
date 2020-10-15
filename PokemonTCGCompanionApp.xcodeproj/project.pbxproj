@@ -64,8 +64,7 @@
 			children = (
 				2697651D2538B8AC00D6FF08 /* ViewControllers */,
 				2697651325367CF200D6FF08 /* API */,
-				269764FD2536785600D6FF08 /* AppDelegate.swift */,
-				269764FF2536785600D6FF08 /* SceneDelegate.swift */,
+				269765252538D2AF00D6FF08 /* Delegates */,
 				269765032536785600D6FF08 /* Main.storyboard */,
 				269765062536785900D6FF08 /* Assets.xcassets */,
 				269765082536785900D6FF08 /* LaunchScreen.storyboard */,
@@ -90,6 +89,15 @@
 				2697651E2538B8F900D6FF08 /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		269765252538D2AF00D6FF08 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				269764FD2536785600D6FF08 /* AppDelegate.swift */,
+				269764FF2536785600D6FF08 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
