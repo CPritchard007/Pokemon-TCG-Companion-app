@@ -40,18 +40,20 @@ enum Type: String, Codable {
     case water = "Water"
 }
 struct Card: Codable {
-    let id: String //POKEMON TCG UUID
+    //MARK: - Search INFO
+    let id: String //POKEMON TCG ID
     let name: String // POKEMON NAME
-    let hp: String?   // HEALTH POINTS
-    let types: [Type]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]
-    let nationalPokedexNumber: Int? // THE NUMBER THAT POKEMON IS STORED IN THE POKEDEX
-
     let supertype: SuperType? // ENERGY, TRAINER, POKEMON
-    let subtype: SubType? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
     
+    //MARK: -  Display Image
     let imageUrl: String? // LOW RES IMAGE
     let imageUrlHiRes: String?  // HIGH RES IMAGE
     
+    //MARK: - Detailed List Info
+    let nationalPokedexNumber: Int? // THE NUMBER THAT POKEMON IS STORED IN THE POKEDEX
+    let hp: String?   // HEALTH POINTS
+    let types: [Type]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]
+    let subtype: SubType? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
     let rarity: String?  // THE RARITY OF SAID CARD
     let retreatCost: [Type]?  // HOW MUCH ENERGY IT COSTS TO RETREAT
     let attacks: [Attack]?  // ATTACKS THAT YOUR POKEMON CAN DO
