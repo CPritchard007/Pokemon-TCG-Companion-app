@@ -3,22 +3,57 @@
 //
 //  Created by Curtis Pritchard on 2020-09-30.
 //
+enum SuperType: String, Codable {
+    case pokemon = "Pokémon"
+    case trainer = "Trainer"
+    case energy = "Energy"
+}
 
+enum SubType: String, Codable {
+    case basic =  "Basic"
+    case stage1 = "Stage 1"
+    case stage2 = "stage 2"
+    case pokemonTool = "Pokémon Tool"
+    case special = "Special"
+    case restored = "Restored"
+    case item = "Item"
+    case stadium = "Stadium"
+    case support = "Support"
+    case gx = "GX"
+    case Break = "break"
+    case ex = "EX"
+    case legend = "Legend"
+    case rocketsSecretMachine = "Rocket`s Secret Machine"
+}
+
+enum Type: String, Codable {
+    case grass = "Grass"
+    case fire = "Fire"
+    case lightning = "Lightning"
+    case darkness = "Darknesss"
+    case fighting = "Fighting"
+    case fairy = "fairy"
+    case colorless = "colorless"
+    case dragon = "Dragon"
+    case psychic = "Psychic"
+    case metal = "Metal"
+    case water = "Water"
+}
 struct Card: Codable {
-    let id: String? //POKEMON TCG UUID
-    let name: String? // POKEMON NAME
+    let id: String //POKEMON TCG UUID
+    let name: String // POKEMON NAME
     let hp: String?   // HEALTH POINTS
-    let type: [String]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]
+    let types: [Type]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]
     let nationalPokedexNumber: Int? // THE NUMBER THAT POKEMON IS STORED IN THE POKEDEX
 
-    let supertype: String? // ENERGY, TRAINER, POKEMON
-    let subtype: String? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
+    let supertype: SuperType? // ENERGY, TRAINER, POKEMON
+    let subtype: SubType? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
     
     let imageUrl: String? // LOW RES IMAGE
     let imageUrlHiRes: String?  // HIGH RES IMAGE
     
     let rarity: String?  // THE RARITY OF SAID CARD
-    let retreatCost: [String]?  // HOW MUCH ENERGY IT COSTS TO RETREAT
+    let retreatCost: [Type]?  // HOW MUCH ENERGY IT COSTS TO RETREAT
     let attacks: [Attack]?  // ATTACKS THAT YOUR POKEMON CAN DO
     let resistances: [Energy]? // WHAT ATTACKS ARE NOT SUPER EFFECTIVE
     let weaknesses: [Energy]? // WHAT IS SUPER EFFECTIVE AGAINST THIS POKEMON
@@ -26,12 +61,12 @@ struct Card: Codable {
 }
 
 struct Energy: Codable {
-    let type: String
+    let type: Type
     let value: String
 }
 
 struct Attack: Codable {
-    let cost: [String]?
+    let cost: [Type]?
     let name: String?
     let text: String?
     let damage: String?
