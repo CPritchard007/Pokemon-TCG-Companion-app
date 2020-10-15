@@ -13,17 +13,13 @@
         <!--Search View-->
         <scene sceneID="RoA-x2-QtR">
             <objects>
-                <viewController id="NGl-Uk-0sh" sceneMemberID="viewController">
+                <viewController id="NGl-Uk-0sh" customClass="SearchViewController" customModule="PokemonTCGCompanionApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uvg-nk-Myr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Vqe-Ys-ioQ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-Ai-0WZ">
-                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hlr-RZ-nT1">
                                     <size key="itemSize" width="128" height="128"/>
@@ -32,7 +28,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCell" id="Gfi-Fv-IgZ">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCardCell" id="Gfi-Fv-IgZ">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xpa-So-oGI">
@@ -46,16 +42,16 @@
                         <viewLayoutGuide key="safeArea" id="uuZ-0d-0rL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Vqe-Ys-ioQ" firstAttribute="trailing" secondItem="uuZ-0d-0rL" secondAttribute="trailing" id="Aav-d6-QVq"/>
-                            <constraint firstItem="Vqe-Ys-ioQ" firstAttribute="leading" secondItem="uuZ-0d-0rL" secondAttribute="leading" id="ENe-Sn-TQl"/>
-                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="top" secondItem="Vqe-Ys-ioQ" secondAttribute="bottom" id="IfB-cX-f7E"/>
-                            <constraint firstAttribute="bottom" secondItem="yt3-Ai-0WZ" secondAttribute="bottom" id="QOq-FS-Y1M"/>
-                            <constraint firstItem="Vqe-Ys-ioQ" firstAttribute="top" secondItem="uuZ-0d-0rL" secondAttribute="top" id="dR4-Ka-wq6"/>
-                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="trailing" secondItem="uuZ-0d-0rL" secondAttribute="trailing" id="oxc-HR-vyZ"/>
-                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="leading" secondItem="uuZ-0d-0rL" secondAttribute="leading" id="zt3-IU-5p5"/>
+                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="trailing" secondItem="uuZ-0d-0rL" secondAttribute="trailing" id="1ZL-gp-lkP"/>
+                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="leading" secondItem="uuZ-0d-0rL" secondAttribute="leading" id="EDF-Ka-qxS"/>
+                            <constraint firstItem="yt3-Ai-0WZ" firstAttribute="top" secondItem="uuZ-0d-0rL" secondAttribute="top" id="vt8-nA-ZYC"/>
+                            <constraint firstAttribute="bottom" secondItem="yt3-Ai-0WZ" secondAttribute="bottom" id="zKD-l8-u7F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search View" id="zR9-5d-SS8"/>
+                    <connections>
+                        <outlet property="collectionView" destination="yt3-Ai-0WZ" id="a2B-d3-TvR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="io1-aA-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
