@@ -23,8 +23,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
     //MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
+    let pageSize = 20
     var cards = [Card]()
-    
     var selectedType : SuperTypePlus = .all
     var searchbarText: String {
         return searchController.searchBar.text ?? ""
@@ -39,6 +39,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         //TODO: add hidable UISearchController into the pages CollectionView with Scope bar [Pokemon, Energy, Trainer]
        // MARK: - SearchBar
@@ -58,7 +59,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         definesPresentationContext = true
         query()
     }
-    
+    override func viewWillLayoutSubviews() {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
     
     //MARK: query
     func query(){
@@ -66,19 +69,18 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
         if !searchbarText.isEmpty {
             if selectedType == .all {
-                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)"
+                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)&page=1&pageSize=\(pageSize)"
             } else {
-                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)&supertype=\(selectedType.rawValue)"
+                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)&supertype=\(selectedType.rawValue)&page=1&pageSize=\(pageSize)"
             }
         
         } else if selectedType != .all {
-            urlString = "https://api.pokemontcg.io/v1/cards?supertype=\(selectedType)"
+            urlString = "https://api.pokemontcg.io/v1/cards?supertype=\(selectedType)&page=1&pageSize=\(pageSize)"
         } else {
-            urlString = "https://api.pokemontcg.io/v1/cards"
+            urlString = "https://api.pokemontcg.io/v1/cards?page=1&pageSize=\(pageSize)"
         }
         
         print(urlString)
-        
         do {
             let url = URL(string: urlString)
             if let url = url {let data = try Data(contentsOf: url)
@@ -108,7 +110,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchbar = searchController.searchBar
         
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(getCards), object: searchbar)
+       
         self.perform(#selector(getCards),with: searchbar, afterDelay: 0.2)
     }
     
@@ -177,3 +179,18 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let sizePerRow: Int = Int(collectionView.bounds.width) / 200
+        let MaxWidth = self.collectionView.bounds.width
+        let cellAspect = ((Int(MaxWidth) / sizePerRow) / 3) - 2
+        
+        return CGSize(width: cellAspect * 3 , height: cellAspect * 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0.0
+    }
+}
