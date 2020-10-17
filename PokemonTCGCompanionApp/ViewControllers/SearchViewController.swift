@@ -10,6 +10,12 @@ import UIKit
  this screen uses the searchbar thats tutorial can be found here:
     https://www.raywenderlich.com/4363809-uisearchcontroller-tutorial-getting-started
  */
+enum SuperTypePlus: String, CaseIterable {
+    case all = "All"
+    case pokemon = "Pokémon"
+    case trainer = "Trainer"
+    case energy = "Energy"
+}
 
 class SearchViewController: UIViewController, UISearchResultsUpdating {
   
@@ -18,16 +24,11 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     //MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     var cards = [Card]()
-
     
-    var isSearchbarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
+    var selectedType : SuperTypePlus = .all
+    var searchbarText: String {
+        return searchController.searchBar.text ?? ""
     }
-    var isFiltering: Bool {
-        return searchController.isActive && !isSearchbarEmpty
-    }
-    var filteredCards: [Card] = []
-
     
     //MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,20 +47,37 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "ENTER CARD NAME"
         searchController.searchBar.returnKeyType = .done
-        searchController.searchBar.enablesReturnKeyAutomatically = true
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.scopeButtonTitles = SuperTypePlus.allCases.map{(item) in
+            return item.rawValue
+        }
+        
+        
         navigationItem.searchController = searchController
+        
         definesPresentationContext = true
-        query(name: nil)
+        query()
     }
     
+    
     //MARK: query
-    func query(name: String?){
+    func query(){
         var urlString: String
-        if let name = name {
-             urlString = "https://api.pokemontcg.io/v1/cards?name=\(name)"
+
+        if !searchbarText.isEmpty {
+            if selectedType == .all {
+                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)"
+            } else {
+                urlString = "https://api.pokemontcg.io/v1/cards?name=\(searchbarText)&supertype=\(selectedType.rawValue)"
+            }
+        
+        } else if selectedType != .all {
+            urlString = "https://api.pokemontcg.io/v1/cards?supertype=\(selectedType)"
         } else {
-             urlString = "https://api.pokemontcg.io/v1/cards"
+            urlString = "https://api.pokemontcg.io/v1/cards"
         }
+        
+        print(urlString)
         
         do {
             let url = URL(string: urlString)
@@ -90,16 +108,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchbar = searchController.searchBar
         
-        
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(getCards), object: searchbar)
         self.perform(#selector(getCards),with: searchbar, afterDelay: 0.2)
-        
-        
     }
     
-    @objc func getCards () {
-        query(name: searchController.searchBar.text!)
+    @objc func getCards(){
+        query()
     }
+    
+   
 
 }
 
@@ -119,7 +136,7 @@ extension SearchViewController: UICollectionViewDataSource {
         
         let card = cards[indexPath.row]
 
-        if let imageURL = card.imageUrl ,let url = URL(string: imageURL), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+        if let url = URL(string: card.imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
             cell.imgeView.image = image
             
         }
@@ -139,5 +156,24 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+        switch selectedScope {
+        case 0:
+            selectedType = .all
+        case 1:
+            selectedType = .pokemon
+        case 2:
+            selectedType = .trainer
+        case 3:
+            selectedType = .energy
+        default:
+            selectedType = .all
+        }
+        
+        query()
+    }
 }
+
 
