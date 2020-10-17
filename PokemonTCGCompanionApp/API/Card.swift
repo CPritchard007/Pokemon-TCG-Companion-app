@@ -3,7 +3,7 @@
 //
 //  Created by Curtis Pritchard on 2020-09-30.
 //
-enum SuperType: String, Codable {
+enum SuperType: String, Codable, CaseIterable {
     case pokemon = "Pokémon"
     case trainer = "Trainer"
     case energy = "Energy"
@@ -61,7 +61,7 @@ struct Card: Codable {
     let types: [Type]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]
 
     
-    //    let subtype: SubType? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
+    // let subtype: SubType? // BASE, STAGE2, POKEMON TOOL, SPECIAL, RESTORED, ITEM, STADIUM, SUPPORT, GX, BREAK, EX, LEGEND, ROCKET SECRET MACHINE
     
     
     let rarity: String?  // THE RARITY OF SAID CARD
