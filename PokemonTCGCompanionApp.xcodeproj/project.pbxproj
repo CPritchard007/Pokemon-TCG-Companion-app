@@ -13,7 +13,6 @@
 		269765052536785600D6FF08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269765032536785600D6FF08 /* Main.storyboard */; };
 		269765072536785900D6FF08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269765062536785900D6FF08 /* Assets.xcassets */; };
 		2697650A2536785900D6FF08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269765082536785900D6FF08 /* LaunchScreen.storyboard */; };
-		2697651525367D0A00D6FF08 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651425367D0A00D6FF08 /* Cards.swift */; };
 		2697651925367D3E00D6FF08 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651825367D3E00D6FF08 /* Card.swift */; };
 		2697651F2538B8F900D6FF08 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651E2538B8F900D6FF08 /* SearchViewController.swift */; };
 		2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269765292538E0AA00D6FF08 /* SearchCollectionCell.swift */; };
@@ -28,7 +27,6 @@
 		269765062536785900D6FF08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		269765092536785900D6FF08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2697650B2536785900D6FF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2697651425367D0A00D6FF08 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		2697651825367D3E00D6FF08 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2697651E2538B8F900D6FF08 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		269765292538E0AA00D6FF08 /* SearchCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 		2697651325367CF200D6FF08 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				2697651425367D0A00D6FF08 /* Cards.swift */,
 				2697651825367D3E00D6FF08 /* Card.swift */,
 			);
 			path = API;
@@ -194,7 +191,6 @@
 				269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */,
 				2697651925367D3E00D6FF08 /* Card.swift in Sources */,
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
-				2697651525367D0A00D6FF08 /* Cards.swift in Sources */,
 				2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
