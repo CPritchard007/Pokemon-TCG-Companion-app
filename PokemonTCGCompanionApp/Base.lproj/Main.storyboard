@@ -175,7 +175,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">
-            <color red="1" green="0.25225514388832215" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

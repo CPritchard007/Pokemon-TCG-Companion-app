@@ -11,17 +11,28 @@ import UIKit
     https://www.raywenderlich.com/4363809-uisearchcontroller-tutorial-getting-started
  */
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchResultsUpdating {
+  
     
-    
-   
 
     //MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     var cards = [Card]()
- 
+
+    
+    var isSearchbarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchbarEmpty
+    }
+    var filteredCards: [Card] = []
+
+    
     //MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +41,14 @@ class SearchViewController: UIViewController {
         
         //TODO: add hidable UISearchController into the pages CollectionView with Scope bar [Pokemon, Energy, Trainer]
        // MARK: - SearchBar
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "ENTER CARD NAME"
+        searchController.searchBar.returnKeyType = .done
+        searchController.searchBar.enablesReturnKeyAutomatically = true
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        searchController.searchBar.scopeButtonTitles = SuperType.allCases.map {$0.rawValue}
         query(name: nil)
     }
     
@@ -73,9 +87,20 @@ class SearchViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchbar = searchController.searchBar
+        
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(getCards), object: searchbar)
+        self.perform(#selector(getCards),with: searchbar, afterDelay: 0.2)
+        
+        
+    }
+    
+    @objc func getCards () {
+        query(name: searchController.searchBar.text!)
+    }
 
-    
-    
 }
 
 extension SearchViewController: UICollectionViewDelegate {
@@ -85,6 +110,7 @@ extension SearchViewController: UICollectionViewDelegate {
 extension SearchViewController: UICollectionViewDataSource {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         return cards.count
     }
     
@@ -107,5 +133,11 @@ extension SearchViewController: UICollectionViewDataSource {
         
     }
     
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
 
