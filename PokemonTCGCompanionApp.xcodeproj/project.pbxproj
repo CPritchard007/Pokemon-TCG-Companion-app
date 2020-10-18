@@ -16,6 +16,7 @@
 		2697651925367D3E00D6FF08 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651825367D3E00D6FF08 /* Card.swift */; };
 		2697651F2538B8F900D6FF08 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697651E2538B8F900D6FF08 /* SearchViewController.swift */; };
 		2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269765292538E0AA00D6FF08 /* SearchCollectionCell.swift */; };
+		26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4856B253BB7F400F685B1 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2697651825367D3E00D6FF08 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2697651E2538B8F900D6FF08 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		269765292538E0AA00D6FF08 /* SearchCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
+		26A4856B253BB7F400F685B1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				269765012536785600D6FF08 /* ViewController.swift */,
 				2697651E2538B8F900D6FF08 /* SearchViewController.swift */,
+				26A4856B253BB7F400F685B1 /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				2697651925367D3E00D6FF08 /* Card.swift in Sources */,
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
 				2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */,
+				26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

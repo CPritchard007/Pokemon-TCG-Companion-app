@@ -40,6 +40,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.allowsSelection = true
         
         //TODO: add hidable UISearchController into the pages CollectionView with Scope bar [Pokemon, Energy, Trainer]
        // MARK: - SearchBar
@@ -118,12 +119,18 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         query()
     }
     
-   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationSegue = segue.destination as? DetailViewController else { return }
+        if let index = collectionView.indexPathsForSelectedItems?.first?.row {
+            print("indexOf: \(index)")
+            destinationSegue.card = cards[index]
+        }
+    }
 
 }
 
 extension SearchViewController: UICollectionViewDelegate {
-
+    
 }
 
 extension SearchViewController: UICollectionViewDataSource {
@@ -151,6 +158,8 @@ extension SearchViewController: UICollectionViewDataSource {
         
         
     }
+    
+    
     
 }
 

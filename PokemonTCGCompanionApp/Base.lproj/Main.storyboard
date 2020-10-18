@@ -131,14 +131,28 @@
         <!--Detail View-->
         <scene sceneID="m7k-Qa-HAi">
             <objects>
-                <viewController id="1wK-tc-QnB" sceneMemberID="viewController">
+                <viewController id="1wK-tc-QnB" customClass="DetailViewController" customModule="PokemonTCGCompanionApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HWG-Ys-cAV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lhE-RR-6Wc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="44a-m9-Zgu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lhE-RR-6Wc" firstAttribute="top" secondItem="44a-m9-Zgu" secondAttribute="top" id="GfO-bN-v6A"/>
+                            <constraint firstAttribute="bottom" secondItem="lhE-RR-6Wc" secondAttribute="bottom" id="mSV-2P-fZ8"/>
+                            <constraint firstItem="lhE-RR-6Wc" firstAttribute="leading" secondItem="44a-m9-Zgu" secondAttribute="leading" id="qaH-jq-mRu"/>
+                            <constraint firstItem="44a-m9-Zgu" firstAttribute="trailing" secondItem="lhE-RR-6Wc" secondAttribute="trailing" id="zno-t9-FQ5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail View" id="8VD-Vl-tGA"/>
+                    <connections>
+                        <outlet property="imageView" destination="lhE-RR-6Wc" id="V9V-eT-LqK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmB-LF-1sp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
