@@ -21,7 +21,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
   
     
 
-    //MARK: - Properties
+    //MARK: - Variables
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
     var cards = [Card]()
@@ -38,6 +38,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //MARK: - Properties
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsSelection = true

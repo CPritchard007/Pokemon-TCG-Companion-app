@@ -67,8 +67,8 @@ struct Card: Codable {
     let rarity: String?  // THE RARITY OF SAID CARD
     let retreatCost: [Type]?  // HOW MUCH ENERGY IT COSTS TO RETREAT
     //let attacks: [Attack]?  // ATTACKS THAT YOUR POKEMON CAN DO
-    //let resistances: [Energy]? // WHAT ATTACKS ARE NOT SUPER EFFECTIVE
-    //let weaknesses: [Energy]? // WHAT IS SUPER EFFECTIVE AGAINST THIS POKEMON
+    let resistances: [Energy]? // WHAT ATTACKS ARE NOT SUPER EFFECTIVE
+    let weaknesses: [Energy]? // WHAT IS SUPER EFFECTIVE AGAINST THIS POKEMON
 
 }
 
