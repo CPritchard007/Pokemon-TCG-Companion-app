@@ -13,5 +13,6 @@ class AttackTableViewCell: UITableViewCell {
     @IBOutlet weak var attackNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    @IBOutlet weak var damageLabel: UILabel!
     
 }

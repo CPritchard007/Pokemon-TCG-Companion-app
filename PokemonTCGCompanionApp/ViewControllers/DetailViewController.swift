@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController     {
+class DetailViewController: UIViewController, UITableViewDelegate     {
     //MARK: - Variables
     var card: Card?
     
@@ -30,6 +30,9 @@ class DetailViewController: UIViewController     {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
         
         
         if let imageUrl = card?.imageUrlHiRes, let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
@@ -70,7 +73,30 @@ class DetailViewController: UIViewController     {
                 
             }
         }
-        
-    
     }
 }
+
+extension DetailViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = card?.attacks?.count, count > 0 {
+            return count
+        } else {
+            return 0
+        }
+
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = "AttackTableviewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
+            if let attacks: [Attack] = card?.attacks {
+                let attack = attacks[indexPath.row]
+                cell.attackNameLabel.text = attack.name
+                cell.descriptionLabel.text = attack.text
+                cell.damageLabel.text = attack.damage
+            }
+        return cell
+    }
+}
+

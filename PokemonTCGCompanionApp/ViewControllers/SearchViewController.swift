@@ -113,8 +113,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchbar = searchController.searchBar
         
-       
-        self.perform(#selector(getCards),with: searchbar, afterDelay: 0.2)
+        NSObject.cancelPreviousPerformRequests(withTarget: searchbar, selector: #selector(getCards), object: searchbar)
+        self.perform(#selector(getCards),with: searchbar, afterDelay: 1)
     }
     
     @objc func getCards(){
@@ -193,7 +193,7 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let sizePerRow: Int = Int(collectionView.bounds.width) / 200
+        let sizePerRow: Int = max((Int(collectionView.bounds.width) / 200), 2)
         let MaxWidth = self.collectionView.bounds.width
         let cellAspect = ((Int(MaxWidth) / sizePerRow) / 3) - 2
         

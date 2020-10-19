@@ -276,7 +276,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="SEV-rw-tj2" firstAttribute="top" secondItem="ucj-hc-lrN" secondAttribute="top" constant="5" id="1Pa-xA-f9f"/>
                                             <constraint firstItem="iWr-ox-flM" firstAttribute="top" secondItem="SEV-rw-tj2" secondAttribute="bottom" constant="5" id="EnS-dF-kWb"/>
@@ -336,7 +336,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcK-5M-T0w">
-                                                    <rect key="frame" x="75" y="16" width="314" height="39"/>
+                                                    <rect key="frame" x="75" y="16" width="132.5" height="39"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -347,22 +347,32 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="##" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-kc-zie">
+                                                    <rect key="frame" x="381.5" y="16" width="27.5" height="39"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UIu-Io-7Fl" firstAttribute="top" secondItem="rsV-oI-knz" secondAttribute="top" constant="5" id="1cn-9j-CUa"/>
                                                 <constraint firstItem="VcK-5M-T0w" firstAttribute="leading" secondItem="UIu-Io-7Fl" secondAttribute="trailing" constant="20" id="4kW-uO-aSY"/>
                                                 <constraint firstItem="WCC-iN-b5h" firstAttribute="leading" secondItem="rsV-oI-knz" secondAttribute="leading" constant="5" id="4kl-7J-QOz"/>
                                                 <constraint firstItem="WCC-iN-b5h" firstAttribute="top" secondItem="UIu-Io-7Fl" secondAttribute="bottom" constant="5" id="5He-8n-qGf"/>
+                                                <constraint firstAttribute="trailing" secondItem="kqc-kc-zie" secondAttribute="trailing" constant="5" id="8t6-VH-nRZ"/>
                                                 <constraint firstItem="VcK-5M-T0w" firstAttribute="top" secondItem="rsV-oI-knz" secondAttribute="topMargin" constant="5" id="GYP-hP-0mC"/>
+                                                <constraint firstItem="kqc-kc-zie" firstAttribute="bottom" secondItem="VcK-5M-T0w" secondAttribute="bottom" id="Htq-rY-ut5"/>
+                                                <constraint firstItem="kqc-kc-zie" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VcK-5M-T0w" secondAttribute="trailing" constant="100" id="OTU-sy-0ld"/>
                                                 <constraint firstAttribute="trailing" secondItem="WCC-iN-b5h" secondAttribute="trailing" constant="5" id="aNG-Sz-9WA"/>
+                                                <constraint firstItem="kqc-kc-zie" firstAttribute="top" secondItem="VcK-5M-T0w" secondAttribute="top" id="d6N-sF-XJN"/>
                                                 <constraint firstItem="UIu-Io-7Fl" firstAttribute="leading" secondItem="rsV-oI-knz" secondAttribute="leading" constant="5" id="fOl-K4-kJu"/>
                                                 <constraint firstAttribute="bottom" secondItem="WCC-iN-b5h" secondAttribute="bottom" constant="5" id="kx4-NQ-WJQ"/>
                                                 <constraint firstItem="VcK-5M-T0w" firstAttribute="bottom" secondItem="UIu-Io-7Fl" secondAttribute="bottom" id="oL6-FU-lhC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="VcK-5M-T0w" secondAttribute="trailing" constant="5" id="pxe-Ce-a62"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="attackNameLabel" destination="VcK-5M-T0w" id="4LE-pU-Gcf"/>
+                                            <outlet property="damageLabel" destination="kqc-kc-zie" id="boz-Tz-rJe"/>
                                             <outlet property="descriptionLabel" destination="WCC-iN-b5h" id="XmA-R6-gGQ"/>
                                             <outlet property="typeImageView" destination="UIu-Io-7Fl" id="K4c-Fc-JQQ"/>
                                         </connections>
