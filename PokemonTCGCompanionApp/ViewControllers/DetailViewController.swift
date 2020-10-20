@@ -26,15 +26,20 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
     @IBOutlet weak var resistanceImage: UIImageView!
     @IBOutlet weak var resistanceValue: UILabel!
     
+    
     ///#Retreat
     @IBOutlet weak var retreatImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
+        
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        
         
         if let imageUrl = card?.imageUrlHiRes, let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                 imageView.image = image
