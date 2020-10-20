@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var hpLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var effectStackview: UIStackView!
     
     ///#WEAKNESS
     @IBOutlet weak var weaknessImage: UIImageView!
@@ -33,18 +34,17 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
         
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
+        tableView.allowsSelection = false
         
         if let imageUrl = card?.imageUrlHiRes, let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                 imageView.image = image
             }
         
         
-        if let name = card?.name, let hp = card?.hp  {
+        if let name = card?.name {
             print(name)
             nameLabel.text = name
-           print(hp)
-            hpLabel.text = hp
+            hpLabel.text = card?.hp ?? ""
         }
         
         
@@ -79,8 +79,13 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
 extension DetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = card?.attacks?.count, count > 0 {
-            return count
+       
+        if let cardSuperType = card?.supertype, cardSuperType == .trainer, let trainerText = card?.text{
+            return trainerText.count
+        }
+        
+        if let attacks = card?.attacks {
+            return attacks.count + (card?.ability != nil ? 1 : 0)
         } else {
             return 0
         }
@@ -88,15 +93,54 @@ extension DetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "AttackTableviewCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
+        
+        if let cardSuperType = card?.supertype, cardSuperType == .trainer, let trainerText = card?.text {
+            let identifier = "TrainerTableviewCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! TrainerTableViewCell
+            
+            cell.trainerDescription.text = trainerText[indexPath.row]
+            
+            return cell
+        }
+        
+        
+        
+        if let ability = card?.ability {
+            if indexPath.row == 0 {
+                let identifier = "AbilityTableviewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AbilityTableViewCell
+                cell.abilityNameLabel.text = ability.name
+                cell.abilityText.text = ability.text
+                cell.abilityTypeImage.image = UIImage(named: "abilityImage")
+                return cell
+
+            } else {
+                let identifier = "AttackTableviewCell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
+                if let attacks: [Attack] = card?.attacks {
+                    let attack = attacks[indexPath.row - 1]
+                    cell.attackNameLabel.text = attack.name
+                    cell.descriptionLabel.text = attack.text
+                    cell.damageLabel.text = attack.damage
+//                    if let type = attack.cost?.first?.rawValue {
+//                        cell.typeImageView.image = UIImage(named: "Type\(type)")
+//                    }
+                }
+                return cell
+            }
+            
+        } else {
+            let identifier = "AttackTableviewCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
             if let attacks: [Attack] = card?.attacks {
                 let attack = attacks[indexPath.row]
                 cell.attackNameLabel.text = attack.name
                 cell.descriptionLabel.text = attack.text
                 cell.damageLabel.text = attack.damage
             }
-        return cell
+            
+            return cell
+        }
     }
 }
 

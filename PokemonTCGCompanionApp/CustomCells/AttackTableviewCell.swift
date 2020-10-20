@@ -16,3 +16,19 @@ class AttackTableViewCell: UITableViewCell {
     @IBOutlet weak var damageLabel: UILabel!
     
 }
+class AbilityTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var abilityTypeImage: UIImageView!
+    
+    @IBOutlet weak var abilityNameLabel: UILabel!
+    
+    @IBOutlet weak var abilityType: UILabel!
+    
+    @IBOutlet weak var abilityText: UILabel!
+    
+    
+}
+
+class TrainerTableViewCell: UITableViewCell {
+    @IBOutlet weak var trainerDescription: UILabel!
+}
