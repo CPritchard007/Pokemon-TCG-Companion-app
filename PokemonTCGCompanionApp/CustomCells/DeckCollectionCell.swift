@@ -9,5 +9,7 @@ import UIKit
 
 class DeckCollectionCell: UICollectionViewCell {
     
+    @IBOutlet weak var deckImage: UIImageView!
+    @IBOutlet weak var deckNameLabel: UILabel!
 
 }

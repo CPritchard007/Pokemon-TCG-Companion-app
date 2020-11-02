@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
+        <attribute name="hp" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="nationalPokedexNumber" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rarity" attributeType="String"/>
+        <attribute name="subtype" attributeType="String"/>
+        <attribute name="supertype" attributeType="String"/>
+        <attribute name="types" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Card" positionX="-54" positionY="-9" width="128" height="163"/>
+    </elements>
+</model>
