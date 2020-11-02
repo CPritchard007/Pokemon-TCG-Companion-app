@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267E50D6254FB6F600717B5F /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E50D5254FB6F600717B5F /* DeckViewController.swift */; };
+		267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */; };
 		269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FD2536785600D6FF08 /* AppDelegate.swift */; };
 		269765002536785600D6FF08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FF2536785600D6FF08 /* SceneDelegate.swift */; };
 		269765022536785600D6FF08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269765012536785600D6FF08 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		267E50D5254FB6F600717B5F /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
+		267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionCell.swift; sourceTree = "<group>"; };
 		269764FA2536785600D6FF08 /* PokemonTCGCompanionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTCGCompanionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269764FD2536785600D6FF08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269764FF2536785600D6FF08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				269765012536785600D6FF08 /* ViewController.swift */,
 				2697651E2538B8F900D6FF08 /* SearchViewController.swift */,
 				26A4856B253BB7F400F685B1 /* DetailViewController.swift */,
+				267E50D5254FB6F600717B5F /* DeckViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			children = (
 				269765292538E0AA00D6FF08 /* SearchCollectionCell.swift */,
 				26BA83B8253BF4AB00D9E4A1 /* AttackTableviewCell.swift */,
+				267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -194,12 +200,14 @@
 			files = (
 				2697651F2538B8F900D6FF08 /* SearchViewController.swift in Sources */,
 				269765022536785600D6FF08 /* ViewController.swift in Sources */,
+				267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */,
 				269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */,
 				2697651925367D3E00D6FF08 /* Card.swift in Sources */,
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
 				2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */,
 				26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */,
 				26BA83B9253BF4AB00D9E4A1 /* AttackTableviewCell.swift in Sources */,
+				267E50D6254FB6F600717B5F /* DeckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

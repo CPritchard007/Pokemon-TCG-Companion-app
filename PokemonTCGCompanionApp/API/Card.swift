@@ -81,7 +81,7 @@ struct Energy: Codable {
 }
 
 struct Attack: Codable {
-    // let cost: [Type]?
+    let cost: [Type.RawValue]?
     let name: String?
     let text: String?
     let damage: String?

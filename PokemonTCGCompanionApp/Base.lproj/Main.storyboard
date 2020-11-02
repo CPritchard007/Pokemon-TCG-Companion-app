@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zV4-Xj-9GK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -81,24 +81,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-wH-EIp">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-wH-EIp" customClass="DeckViewController" customModule="PokemonTCGCompanionApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nef-fC-rq3">
-                                    <size key="itemSize" width="155" height="181"/>
+                                    <size key="itemSize" width="189" height="202"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" reuseIdentifier="DeckCell" id="PSq-cV-sfJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="181"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" reuseIdentifier="DeckCell" id="PSq-cV-sfJ" customClass="DeckCollectionCell" customModule="PokemonTCGCompanionApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JJ5-Jq-aZy">
-                                            <rect key="frame" x="0.0" y="0.0" width="155" height="181"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="giftcard.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="049-5T-wUT">
+                                                    <rect key="frame" x="0.0" y="1.5" width="200" height="134"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="137.5" id="5E0-2Y-uVv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-PX-dfC">
+                                                    <rect key="frame" x="0.0" y="145.5" width="200" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="O06-ct-El5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="049-5T-wUT" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" id="1Be-Ih-Yma"/>
+                                                <constraint firstAttribute="trailing" secondItem="KKn-PX-dfC" secondAttribute="trailing" id="HVs-NX-s27"/>
+                                                <constraint firstItem="049-5T-wUT" firstAttribute="top" secondItem="JJ5-Jq-aZy" secondAttribute="top" id="VJH-Ii-2QB"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KKn-PX-dfC" secondAttribute="bottom" id="aPY-kd-kzO"/>
+                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="top" secondItem="049-5T-wUT" secondAttribute="bottom" constant="8" id="lid-U1-z3A"/>
+                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" id="r2M-n5-QIs"/>
+                                                <constraint firstAttribute="trailing" secondItem="049-5T-wUT" secondAttribute="trailing" id="zjN-oQ-3sa"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="155" height="181"/>
+                                        <size key="customSize" width="200" height="200"/>
+                                        <connections>
+                                            <outlet property="deckImage" destination="049-5T-wUT" id="4RY-8p-QFa"/>
+                                            <outlet property="deckNameLabel" destination="KKn-PX-dfC" id="cKx-Sr-qSB"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -163,7 +193,7 @@
                                     <constraint firstItem="4B7-Jj-pN7" firstAttribute="top" secondItem="3VE-zM-Ipd" secondAttribute="top" id="bde-wV-dZC"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="60W-Yp-DH8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="60W-Yp-DH8">
                                 <rect key="frame" x="0.0" y="138" width="414" height="290"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="290" id="6uF-FG-b9o"/>
@@ -525,6 +555,7 @@
         <image name="TypeFighter" width="75" height="75"/>
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>
+        <image name="giftcard.fill" catalog="system" width="128" height="88"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

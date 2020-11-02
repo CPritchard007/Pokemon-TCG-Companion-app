@@ -66,6 +66,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+ 
+    
     //MARK: query
     func query(){
         var urlString: String
