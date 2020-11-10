@@ -52,8 +52,8 @@ struct Card: Codable {
     let supertype: SuperType // ENERGY, TRAINER, POKEMON
     
     //MARK: -  Display Image
-    let imageUrl: String // LOW RES IMAGE
-    let imageUrlHiRes: String  // HIGH RES IMAGE
+    let imageUrl: String? // LOW RES IMAGE
+    let imageUrlHiRes: String?  // HIGH RES IMAGE
     
     //MARK: - Detailed List Info
     let nationalPokedexNumber: Int? // THE NUMBER THAT POKEMON IS STORED IN THE POKEDEX

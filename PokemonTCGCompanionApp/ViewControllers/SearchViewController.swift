@@ -149,7 +149,7 @@ extension SearchViewController: UICollectionViewDataSource {
         
         let card = cards[indexPath.row]
 
-        if let url = URL(string: card.imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+        if let imageUrl = card.imageUrl, let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
             cell.imgeView.image = image
             
         }
