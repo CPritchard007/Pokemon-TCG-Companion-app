@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate     {
     //MARK: - Variables
-    var card: Card?
+    var card: CardApi?
     
     //MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!

@@ -11,14 +11,14 @@ public class ImageCache {
     public static let publicCache = ImageCache()
     var placeholderImage = UIImage(systemName: "rectangle")!
     private let cachedImages = NSCache<NSURL, UIImage>()
-    private var loadingResponses = [NSURL: [(Card, UIImage?) -> Swift.Void]]()
+    private var loadingResponses = [NSURL: [(CardApi, UIImage?) -> Swift.Void]]()
     
     public final func image(url: NSURL) -> UIImage? {
         return cachedImages.object(forKey: url)
     }
     /// - Tag: cache
     // Returns the cached image if available, otherwise asynchronously loads and caches it.
-    final func load(url: NSURL, card: Card, completion: @escaping (Card, UIImage?) -> Swift.Void) {
+    final func load(url: NSURL, card: CardApi, completion: @escaping (CardApi, UIImage?) -> Swift.Void) {
         // Check for a cached image.
         if let cachedImage = image(url: url) {
             DispatchQueue.main.async {

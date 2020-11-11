@@ -52,9 +52,10 @@ enum Type: String, Codable {
     case psychic = "Psychic"
     case water = "Water"
 }
-struct Card: Codable, Hashable {
+struct CardApi: Codable, Hashable {
+
     
-    static func == (lhs: Card, rhs: Card) -> Bool {
+    static func == (lhs: CardApi, rhs: CardApi) -> Bool {
         return lhs.id == rhs.id
     }
     
@@ -112,5 +113,5 @@ struct Ability: Codable {
 }
 
 struct Cards: Codable {
-    var cards: [Card]
+    var cards: [CardApi]
 }
