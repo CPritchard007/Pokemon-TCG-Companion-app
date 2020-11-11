@@ -11,7 +11,7 @@ class DeckListController: UIViewController {
     
     //MARK: - Variables
     var templateItems = [Item]()
-    var isTournamentLocked: Bool = false
+    var isTournamentLocked: Bool = true
     
     //MARK: - Outlets
     @IBOutlet weak var deckCountLabel: UILabel!
@@ -34,6 +34,11 @@ class DeckListController: UIViewController {
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
         
+        if isTournamentLocked {
+            tournamentLock.image = UIImage(systemName: "lock.fill")
+        } else {
+            tournamentLock.image = UIImage(systemName: "lock.open.fill")
+        }
 
     }
     

@@ -83,7 +83,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-wH-EIp">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29831096394037077" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nef-fC-rq3">
                                     <size key="itemSize" width="189" height="202"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -744,7 +744,7 @@
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="275" y="749"/>
+            <point key="canvasLocation" x="283" y="88"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
