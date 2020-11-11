@@ -21,6 +21,10 @@ class DeckViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    override func viewWillLayoutSubviews() {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 }
 
 extension DeckViewController: UICollectionViewDelegate {
@@ -38,7 +42,7 @@ extension DeckViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DeckCollectionCell
         
         let deck = decks[indexPath.row]
-        cell.deckImage.image = UIImage(systemName: "play.circle")
+        cell.deckImage.image = UIImage(systemName: "giftcard.fill")
         cell.deckNameLabel.text = deck
         
        
@@ -59,6 +63,7 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout {
         let MaxWidth = self.collectionView.bounds.width
         let cellAspect = ((Int(MaxWidth) / sizePerRow) / 3) - 2
         
+        print("cell Width: \(cellAspect * 3); cell Height: \(cellAspect * 4)")
         return CGSize(width: cellAspect * 3 , height: cellAspect * 4)
     }
     

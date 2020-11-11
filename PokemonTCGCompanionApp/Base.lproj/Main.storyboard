@@ -84,7 +84,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-wH-EIp">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nef-fC-rq3">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nef-fC-rq3">
                                     <size key="itemSize" width="189" height="202"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QNC-PU-ku2">
-                                <rect key="frame" x="0.0" y="118" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeckListCell" rowHeight="34" id="oKe-HV-ftP" customClass="DeckListCell" customModule="PokemonTCGCompanionApp" customModuleProvider="target">
@@ -249,7 +249,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvz-Xg-Wyv">
-                                <rect key="frame" x="0.0" y="88" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMi-bN-VYd">
                                         <rect key="frame" x="10" y="0.0" width="197" height="30"/>
@@ -298,28 +298,62 @@
                                     <constraint firstAttribute="bottom" secondItem="OM3-hx-J8I" secondAttribute="bottom" id="iPw-SM-kuM"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYt-Z9-4Bk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60/60" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0WB-2U-7IH">
+                                        <rect key="frame" x="372" y="0.0" width="37" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4wU-Fc-gWX">
+                                        <rect key="frame" x="354" y="2.5" width="16" height="14.5"/>
+                                        <color key="tintColor" red="0.1203600888" green="0.1203600888" blue="0.1203600888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="b1Q-0x-kPo"/>
+                                            <constraint firstAttribute="height" constant="16" id="gKj-fa-sE7"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="0WB-2U-7IH" firstAttribute="top" secondItem="qYt-Z9-4Bk" secondAttribute="top" id="3AM-Wa-qRO"/>
+                                    <constraint firstItem="0WB-2U-7IH" firstAttribute="leading" secondItem="4wU-Fc-gWX" secondAttribute="trailing" constant="2" id="4pb-HI-JSn"/>
+                                    <constraint firstItem="4wU-Fc-gWX" firstAttribute="top" secondItem="qYt-Z9-4Bk" secondAttribute="top" constant="2" id="Bsl-er-oKb"/>
+                                    <constraint firstAttribute="bottom" secondItem="4wU-Fc-gWX" secondAttribute="bottom" constant="2" id="EJN-7N-XE3"/>
+                                    <constraint firstAttribute="height" constant="20" id="O0N-bg-8qt"/>
+                                    <constraint firstAttribute="bottom" secondItem="0WB-2U-7IH" secondAttribute="bottom" id="ZmW-jb-a5D"/>
+                                    <constraint firstAttribute="trailing" secondItem="0WB-2U-7IH" secondAttribute="trailing" constant="5" id="gnO-vT-8WH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IzU-S0-8T1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QNC-PU-ku2" firstAttribute="trailing" secondItem="IzU-S0-8T1" secondAttribute="trailing" id="6YC-PY-i3N"/>
+                            <constraint firstItem="qYt-Z9-4Bk" firstAttribute="top" secondItem="IzU-S0-8T1" secondAttribute="top" id="Bsj-bE-kS4"/>
+                            <constraint firstItem="IzU-S0-8T1" firstAttribute="trailing" secondItem="qYt-Z9-4Bk" secondAttribute="trailing" id="H4K-vU-lRt"/>
                             <constraint firstItem="QNC-PU-ku2" firstAttribute="bottom" secondItem="IzU-S0-8T1" secondAttribute="bottom" id="INx-wa-SZu"/>
                             <constraint firstItem="QNC-PU-ku2" firstAttribute="leading" secondItem="IzU-S0-8T1" secondAttribute="leading" id="OJ5-OG-oqY"/>
                             <constraint firstItem="QNC-PU-ku2" firstAttribute="bottom" secondItem="IzU-S0-8T1" secondAttribute="bottom" id="Ybt-VY-Bct"/>
+                            <constraint firstItem="mvz-Xg-Wyv" firstAttribute="top" secondItem="qYt-Z9-4Bk" secondAttribute="bottom" id="Ygr-bD-B7k"/>
                             <constraint firstItem="mvz-Xg-Wyv" firstAttribute="leading" secondItem="IzU-S0-8T1" secondAttribute="leading" id="ZZf-eD-5ge"/>
                             <constraint firstItem="QNC-PU-ku2" firstAttribute="top" secondItem="mvz-Xg-Wyv" secondAttribute="bottom" id="dLY-g3-eTV"/>
                             <constraint firstItem="IzU-S0-8T1" firstAttribute="trailing" secondItem="mvz-Xg-Wyv" secondAttribute="trailing" id="kHO-ku-FGI"/>
-                            <constraint firstItem="mvz-Xg-Wyv" firstAttribute="top" secondItem="IzU-S0-8T1" secondAttribute="top" id="mH9-gg-qBG"/>
+                            <constraint firstItem="qYt-Z9-4Bk" firstAttribute="leading" secondItem="IzU-S0-8T1" secondAttribute="leading" id="x2V-FA-2rP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uYb-OT-j3e"/>
                     <connections>
+                        <outlet property="deckCountLabel" destination="0WB-2U-7IH" id="NmY-rQ-1rb"/>
                         <outlet property="tableView" destination="QNC-PU-ku2" id="Lgg-6J-unD"/>
+                        <outlet property="tournamentLock" destination="4wU-Fc-gWX" id="brb-6g-mqX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qBS-oF-GPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1819" y="88"/>
+            <point key="canvasLocation" x="1818.840579710145" y="87.723214285714278"/>
         </scene>
         <!--Detail View-->
         <scene sceneID="m7k-Qa-HAi">
@@ -722,6 +756,7 @@
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>
         <image name="giftcard.fill" catalog="system" width="128" height="88"/>
+        <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

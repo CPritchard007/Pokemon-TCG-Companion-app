@@ -11,8 +11,11 @@ class DeckListController: UIViewController {
     
     //MARK: - Variables
     var templateItems = [Item]()
+    var isTournamentLocked: Bool = false
     
     //MARK: - Outlets
+    @IBOutlet weak var deckCountLabel: UILabel!
+    @IBOutlet weak var tournamentLock: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,18 +33,22 @@ class DeckListController: UIViewController {
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .pokemon))
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
+        
 
     }
     
     
 }
 extension DeckListController: UITableViewDataSource {
+   
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         switch section {
         case 0:
             return "POKÈMON"
@@ -56,6 +63,8 @@ extension DeckListController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        deckCountLabel.text = "\(templateItems.count)/60"
+        
         switch section {
         case 0:
             return templateItems.filter {$0.supertype == .pokemon}.count
