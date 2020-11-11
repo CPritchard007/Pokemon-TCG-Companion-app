@@ -143,7 +143,31 @@ extension DeckListController: UITableViewDataSource {
         }
     }
     
-   
+    
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
+            print("added")
+        }
+        add.backgroundColor = UIColor.lightGray
+        add.image = UIImage(systemName: "plus")
+        
+    
+        let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
+            print("remove")
+        }
+        remove.backgroundColor = UIColor.lightGray
+        remove.image = UIImage(systemName: "minus")
+        
+        
+        let configuration = UISwipeActionsConfiguration(actions: [add, remove])
+        
+        configuration.performsFirstActionWithFullSwipe = false
+    
+        return configuration
+    }
     
 }
 
@@ -170,5 +194,7 @@ class Item {
         self.supertype = supertype
     }
 }
+
+
 
 
