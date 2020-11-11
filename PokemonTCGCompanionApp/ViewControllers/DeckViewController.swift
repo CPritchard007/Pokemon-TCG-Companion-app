@@ -64,7 +64,7 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout {
         let cellAspect = ((Int(MaxWidth) / sizePerRow) / 3) - 2
         
         print("cell Width: \(cellAspect * 3); cell Height: \(cellAspect * 4)")
-        return CGSize(width: cellAspect * 3 , height: cellAspect * 4)
+        return CGSize(width: cellAspect * 3 , height: cellAspect * 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

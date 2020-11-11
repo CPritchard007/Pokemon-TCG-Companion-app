@@ -3,6 +3,13 @@
 //
 //  Created by Curtis Pritchard on 2020-09-30.
 //
+
+import UIKit
+
+enum Section {
+    case main
+}
+
 enum SuperType: String, Codable, CaseIterable {
     case pokemon = "Pokémon"
     case trainer = "Trainer"
@@ -45,7 +52,18 @@ enum Type: String, Codable {
     case psychic = "Psychic"
     case water = "Water"
 }
-struct Card: Codable {
+struct Card: Codable, Hashable {
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    
+    
     //MARK: - Search INFO
     let id: String //POKEMON TCG ID
     let name: String // POKEMON NAME

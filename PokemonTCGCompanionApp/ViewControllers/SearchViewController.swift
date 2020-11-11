@@ -25,10 +25,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
     var cards = [Card]()
+    var cardImage = [UIImage]()
+    
     var selectedType : SuperTypePlus = .all
     var searchbarText: String {
         return searchController.searchBar.text ?? ""
     }
+
+    var dataSource: UICollectionViewDiffableDataSource<Section, Card>! = nil
+
     
     //MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -60,6 +65,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         navigationItem.searchController = searchController
         
         definesPresentationContext = true
+        
+        
+        
+        
+        
+        
+        
         query()
     }
     override func viewWillLayoutSubviews() {
@@ -148,12 +160,12 @@ extension SearchViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCardCell", for: indexPath) as! SearchCollectionCell
         
         let card = cards[indexPath.row]
-
+       
         if let imageUrl = card.imageUrl, let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
             cell.imgeView.image = image
-            
-        }
 
+        }
+        
         return cell
     }
     
