@@ -11,6 +11,8 @@
 		267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */; };
 		26844565255B4F6A00D2A4EA /* DeckListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844564255B4F6A00D2A4EA /* DeckListCell.swift */; };
 		26844568255B501600D2A4EA /* DeckListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844567255B501600D2A4EA /* DeckListController.swift */; };
+		26844572255B86CC00D2A4EA /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */; };
+		26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844571255B86CC00D2A4EA /* ImageCache.swift */; };
 		269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FD2536785600D6FF08 /* AppDelegate.swift */; };
 		269765002536785600D6FF08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FF2536785600D6FF08 /* SceneDelegate.swift */; };
 		269765022536785600D6FF08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269765012536785600D6FF08 /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 		267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionCell.swift; sourceTree = "<group>"; };
 		26844564255B4F6A00D2A4EA /* DeckListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListCell.swift; sourceTree = "<group>"; };
 		26844567255B501600D2A4EA /* DeckListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListController.swift; sourceTree = "<group>"; };
+		26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageURLProtocol.swift; sourceTree = "<group>"; };
+		26844571255B86CC00D2A4EA /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		269764FA2536785600D6FF08 /* PokemonTCGCompanionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTCGCompanionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269764FD2536785600D6FF08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269764FF2536785600D6FF08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,15 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
+		2684456F255B86AC00D2A4EA /* Image Cache */ = {
+			isa = PBXGroup;
+			children = (
+				26844571255B86CC00D2A4EA /* ImageCache.swift */,
+				26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */,
+			);
+			path = "Image Cache";
+			sourceTree = "<group>";
+		};
 		269764F12536785600D6FF08 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +94,7 @@
 		269764FC2536785600D6FF08 /* PokemonTCGCompanionApp */ = {
 			isa = PBXGroup;
 			children = (
+				2684456F255B86AC00D2A4EA /* Image Cache */,
 				269765282538E08400D6FF08 /* CustomCells */,
 				2697651D2538B8AC00D6FF08 /* ViewControllers */,
 				2697651325367CF200D6FF08 /* API */,
@@ -208,6 +222,7 @@
 				269765022536785600D6FF08 /* ViewController.swift in Sources */,
 				26844568255B501600D2A4EA /* DeckListController.swift in Sources */,
 				267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */,
+				26844572255B86CC00D2A4EA /* ImageURLProtocol.swift in Sources */,
 				269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */,
 				2697651925367D3E00D6FF08 /* Card.swift in Sources */,
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
@@ -215,6 +230,7 @@
 				26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */,
 				26844565255B4F6A00D2A4EA /* DeckListCell.swift in Sources */,
 				26BA83B9253BF4AB00D9E4A1 /* AttackTableviewCell.swift in Sources */,
+				26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */,
 				267E50D6254FB6F600717B5F /* DeckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
