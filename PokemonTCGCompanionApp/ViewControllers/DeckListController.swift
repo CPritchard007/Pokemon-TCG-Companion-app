@@ -29,7 +29,8 @@ class DeckListController: UIViewController {
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .energy))
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .pokemon))
         templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
-        
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
+
     }
     
     
@@ -43,11 +44,11 @@ extension DeckListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Pokemon"
+            return "POKÈMON"
         case 1:
-            return "Trainer"
+            return "TRAINER"
         case 2:
-            return "Energy"
+            return "ENERGY"
         default:
             return "unknown"
         }
@@ -119,6 +120,14 @@ extension DeckListController: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            print("delete")
+        default:
+          print("")
+        }
+    }
     
 }
 
