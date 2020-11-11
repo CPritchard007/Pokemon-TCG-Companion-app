@@ -48,6 +48,22 @@ class DeckViewController: UIViewController {
             print("there was a problem grabbing your decks ☹️")
         }
     }
+    
+    func loadTable () {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "creationPopover" {
+            let popupVC = segue.destination as! DeckCreationViewController
+            popupVC.collectionView = collectionView
+            
+        }
+    }
+    
+    
 }
 
 extension DeckViewController: UICollectionViewDelegate {
@@ -94,4 +110,54 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout {
         
         return 0.0
     }
+}
+
+
+
+
+
+class DeckCreationViewController: UIViewController {
+    
+    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    
+    var collectionView: UICollectionView!
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBAction func submit(_ sender: Any) {
+        var al: UIAlertController
+        if let text = textField.text , text.count >= 5 {
+            print(text)
+            al = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            present(al, animated: true, completion: nil)
+            
+            let newDeck = Deck(context: coreDataStack.managedContext)
+            
+            newDeck.title = text
+            
+            coreDataStack.saveContext()
+            textField.resignFirstResponder()
+            self.presentingViewController?.dismiss(animated: true, completion: {
+                
+            })
+        } else if let text = textField.text, text.count < 5 {
+             al = UIAlertController(title: nil, message: "The name you have entered is too small", preferredStyle: .alert)
+            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+        } else {
+             al = UIAlertController(title: nil, message: "Something went wrong here", preferredStyle: .alert)
+            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        }
+
+        present(al, animated: true, completion: nil)
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
 }
