@@ -41,6 +41,9 @@ extension DeckViewController: UICollectionViewDataSource {
         cell.deckImage.image = UIImage(systemName: "play.circle")
         cell.deckNameLabel.text = deck
         
+       
+        
+        
         return cell
         
     }
