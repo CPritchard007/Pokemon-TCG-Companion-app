@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -92,20 +93,21 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" reuseIdentifier="deckCollectionCell" id="PSq-cV-sfJ" customClass="DeckCollectionCell" customModule="PokemonTCGCompanionApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="189" height="202"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="189" height="230"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JJ5-Jq-aZy">
-                                            <rect key="frame" x="0.0" y="0.0" width="189" height="202"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="230"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="giftcard.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="049-5T-wUT">
-                                                    <rect key="frame" x="0.0" y="1.5" width="189" height="134"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="049-5T-wUT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="189" height="137.5"/>
+                                                    <color key="tintColor" name="secondaryColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="137.5" id="5E0-2Y-uVv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-PX-dfC">
-                                                    <rect key="frame" x="0.0" y="145.5" width="189" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-PX-dfC">
+                                                    <rect key="frame" x="10" y="145.5" width="169" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="O06-ct-El5"/>
                                                     </constraints>
@@ -116,15 +118,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="049-5T-wUT" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" id="1Be-Ih-Yma"/>
-                                                <constraint firstAttribute="trailing" secondItem="KKn-PX-dfC" secondAttribute="trailing" id="HVs-NX-s27"/>
+                                                <constraint firstAttribute="trailing" secondItem="KKn-PX-dfC" secondAttribute="trailing" constant="10" id="HVs-NX-s27"/>
                                                 <constraint firstItem="049-5T-wUT" firstAttribute="top" secondItem="JJ5-Jq-aZy" secondAttribute="top" id="VJH-Ii-2QB"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KKn-PX-dfC" secondAttribute="bottom" id="aPY-kd-kzO"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KKn-PX-dfC" secondAttribute="bottom" constant="10" id="aPY-kd-kzO"/>
                                                 <constraint firstItem="KKn-PX-dfC" firstAttribute="top" secondItem="049-5T-wUT" secondAttribute="bottom" constant="8" id="lid-U1-z3A"/>
-                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" id="r2M-n5-QIs"/>
+                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" constant="10" id="r2M-n5-QIs"/>
                                                 <constraint firstAttribute="trailing" secondItem="049-5T-wUT" secondAttribute="trailing" id="zjN-oQ-3sa"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="189" height="202"/>
+                                        <size key="customSize" width="189" height="230"/>
                                         <connections>
                                             <outlet property="deckImage" destination="049-5T-wUT" id="4RY-8p-QFa"/>
                                             <outlet property="deckNameLabel" destination="KKn-PX-dfC" id="cKx-Sr-qSB"/>
@@ -153,9 +155,7 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus" catalog="system" id="J7A-Tu-fI4">
                                 <connections>
-                                    <segue destination="1ok-rH-Bqq" kind="popoverPresentation" identifier="creationPopover" popoverAnchorBarButtonItem="J7A-Tu-fI4" id="QXj-UL-Zit">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="addButton:" destination="BYZ-38-t0r" id="PB2-8Z-A9E"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -167,65 +167,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="88.392857142857139"/>
-        </scene>
-        <!--Deck Creation View Controller-->
-        <scene sceneID="3Nn-2q-GqN">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="46u-LS-BSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="1ok-rH-Bqq" customClass="DeckCreationViewController" customModule="PokemonTCGCompanionApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Tfk-cV-IUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Deck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDh-ik-BHZ">
-                                <rect key="frame" x="10" y="30" width="404" height="49"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e8y-UR-307">
-                                <rect key="frame" x="94" y="89" width="290" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5c-l6-Nng">
-                                <rect key="frame" x="20" y="89" width="64" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4V8-V3-Mev">
-                                <rect key="frame" x="335" y="133" width="49" height="30"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submit:" destination="1ok-rH-Bqq" eventType="touchUpInside" id="fnh-Rg-hTF"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Ny7-aR-HHD"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4V8-V3-Mev" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e8y-UR-307" secondAttribute="leading" id="1Y7-2m-Jqf"/>
-                            <constraint firstItem="Ny7-aR-HHD" firstAttribute="trailing" secondItem="VDh-ik-BHZ" secondAttribute="trailing" id="397-rV-4nu"/>
-                            <constraint firstItem="4V8-V3-Mev" firstAttribute="top" secondItem="e8y-UR-307" secondAttribute="bottom" constant="10" id="3Pq-UB-Nd8"/>
-                            <constraint firstItem="VDh-ik-BHZ" firstAttribute="leading" secondItem="Ny7-aR-HHD" secondAttribute="leading" constant="10" id="B7P-jZ-kUp"/>
-                            <constraint firstItem="4V8-V3-Mev" firstAttribute="trailing" secondItem="e8y-UR-307" secondAttribute="trailing" id="ErD-sv-GJF"/>
-                            <constraint firstItem="W5c-l6-Nng" firstAttribute="top" secondItem="e8y-UR-307" secondAttribute="top" id="Pvi-16-BLv"/>
-                            <constraint firstItem="VDh-ik-BHZ" firstAttribute="top" secondItem="Ny7-aR-HHD" secondAttribute="top" constant="30" id="R95-kR-w5W"/>
-                            <constraint firstItem="e8y-UR-307" firstAttribute="top" secondItem="VDh-ik-BHZ" secondAttribute="bottom" constant="10" id="ZFp-J3-AAz"/>
-                            <constraint firstItem="W5c-l6-Nng" firstAttribute="bottom" secondItem="e8y-UR-307" secondAttribute="bottom" id="ZOu-Be-9Gv"/>
-                            <constraint firstItem="Ny7-aR-HHD" firstAttribute="trailing" secondItem="e8y-UR-307" secondAttribute="trailing" constant="30" id="rDO-rz-lHD"/>
-                            <constraint firstItem="e8y-UR-307" firstAttribute="leading" secondItem="W5c-l6-Nng" secondAttribute="trailing" constant="10" id="rdj-nM-Kh2"/>
-                            <constraint firstItem="W5c-l6-Nng" firstAttribute="leading" secondItem="Ny7-aR-HHD" secondAttribute="leading" constant="20" id="txc-T7-K3R"/>
-                        </constraints>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="414" height="300"/>
-                    <connections>
-                        <outlet property="textField" destination="e8y-UR-307" id="yVc-2D-eac"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="810.9375"/>
         </scene>
         <!--Deck List Controller-->
         <scene sceneID="Je1-wx-4cM">
@@ -820,10 +761,12 @@
         <image name="TypeFighter" width="75" height="75"/>
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>
-        <image name="giftcard.fill" catalog="system" width="128" height="88"/>
         <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="secondaryColor">
+            <color red="0.39899998903274536" green="0.64399999380111694" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

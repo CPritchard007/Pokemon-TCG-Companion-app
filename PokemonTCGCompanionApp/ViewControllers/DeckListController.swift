@@ -26,13 +26,14 @@ class DeckListController: UIViewController {
         // remove once you can jump to display
         tableView.allowsSelection = false
         
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .pokemon))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .energy))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .energy))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .pokemon))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: "x99", supertype: .trainer))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 113", quantity: 99, supertype: .trainer))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 114", quantity: 99, supertype: .pokemon))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 115", quantity: 99, supertype: .energy))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: 99, supertype: .energy))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 117", quantity: 99, supertype: .pokemon))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 118", quantity: 99, supertype: .trainer))
+        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 119", quantity: 99, supertype: .trainer))
+        
         
         if isTournamentLocked {
             tournamentLock.image = UIImage(systemName: "lock.fill")
@@ -42,8 +43,18 @@ class DeckListController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var quantityCount = 0
+        for item in templateItems {
+            quantityCount += item.quantity
+        }
+        deckCountLabel.text = "\(quantityCount)/60"
+    }
+    
     
 }
+
 extension DeckListController: UITableViewDataSource {
    
     
@@ -68,7 +79,6 @@ extension DeckListController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        deckCountLabel.text = "\(templateItems.count)/60"
         
         switch section {
         case 0:
@@ -82,6 +92,7 @@ extension DeckListController: UITableViewDataSource {
         default:
             return 0
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,10 +108,9 @@ extension DeckListController: UITableViewDataSource {
             let item = pokemon[indexPath.row]
             cell.nameLabel.text = item.name
             cell.idLabel.text = item.ID
-            cell.quantityLabel.text = item.quantity
+            cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
-                print(indexPath.row)
                 cell.backgroundColor = UIColor.systemGray5
             }
             
@@ -110,10 +120,9 @@ extension DeckListController: UITableViewDataSource {
             let item = trainers[indexPath.row]
             cell.nameLabel.text = item.name
             cell.idLabel.text = item.ID
-            cell.quantityLabel.text = item.quantity
+            cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
-                print(indexPath.row)
                 cell.backgroundColor = UIColor.systemGray5
             }
             
@@ -123,49 +132,44 @@ extension DeckListController: UITableViewDataSource {
             let item = energy[indexPath.row]
             cell.nameLabel.text = item.name
             cell.idLabel.text = item.ID
-            cell.quantityLabel.text = item.quantity
+            cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
-                print(indexPath.row)
                 cell.backgroundColor = UIColor.systemGray5
             }
+            
             
             return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .delete:
-            print("delete")
-        default:
-          print("")
-        }
-    }
+
     
     
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
-            print("added")
+          
         }
-        add.backgroundColor = UIColor.lightGray
+        add.backgroundColor = UIColor(named: "secondaryColor")
         add.image = UIImage(systemName: "plus")
         
     
         let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
-            print("remove")
+          
         }
-        remove.backgroundColor = UIColor.lightGray
+        
+        remove.backgroundColor = UIColor(named: "secondaryColor")
         remove.image = UIImage(systemName: "minus")
         
         
         let configuration = UISwipeActionsConfiguration(actions: [add, remove])
         
         configuration.performsFirstActionWithFullSwipe = false
-    
+
         return configuration
     }
     
@@ -184,10 +188,10 @@ extension DeckListController: UITableViewDelegate {
 class Item {
     let name: String
     let ID: String
-    let quantity: String
+    var quantity: Int
     let supertype: SuperType
     
-    init(name: String, ID: String, quantity: String, supertype: SuperType) {
+    init(name: String, ID: String, quantity: Int, supertype: SuperType) {
         self.name = name
         self.ID = ID
         self.quantity = quantity

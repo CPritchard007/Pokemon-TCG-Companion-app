@@ -19,8 +19,6 @@ enum SuperTypePlus: String, CaseIterable {
 
 class SearchViewController: UIViewController, UISearchResultsUpdating {
   
-    
-
     //MARK: - Variables
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
@@ -38,11 +36,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     //MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //MARK: - Properties
         collectionView.dataSource = self
@@ -61,16 +56,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
             return item.rawValue
         }
         
-        
         navigationItem.searchController = searchController
-        
         definesPresentationContext = true
-        
-        
-        
-        
-        
-        
         
         query()
     }

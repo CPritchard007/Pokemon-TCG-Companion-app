@@ -11,9 +11,33 @@ import CoreData
 
 class DeckViewController: UIViewController {
     //MARK: - Variables
-    let decks = ["item 1", "item 2", "item 3", "item 4", "item 5", "item 6", "item 6", "item 7"]
+
     var deckList = [Deck]()
     lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    
+    @IBAction func addButton(_ sender: Any) {
+        let ac = UIAlertController(title: "New Deck", message: nil, preferredStyle: .alert)
+        ac.addTextField { (textField) in
+                
+        }
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (alertAction) in
+            if let textField = ac.textFields![0].text, textField.count > 5 {
+                
+                let newDeck = Deck(context: self.coreDataStack.managedContext)
+                
+                newDeck.title = textField
+                
+                self.coreDataStack.saveContext()
+                self.presentingViewController?.dismiss(animated: true, completion: {
+                    
+                })
+                self.fetchRequest()
+                self.collectionView.reloadData()
+            }
+        }))
+        present(ac, animated: true, completion: nil)
+    }
     
     
     //MARK: - Outlets
@@ -54,16 +78,6 @@ class DeckViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "creationPopover" {
-            let popupVC = segue.destination as! DeckCreationViewController
-            popupVC.collectionView = collectionView
-            
-        }
-    }
-    
-    
 }
 
 extension DeckViewController: UICollectionViewDelegate {
@@ -103,61 +117,11 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout {
         let cellAspect = ((Int(MaxWidth) / sizePerRow) / 3) - 2
         
         print("cell Width: \(cellAspect * 3); cell Height: \(cellAspect * 4)")
-        return CGSize(width: cellAspect * 3 , height: cellAspect * 3)
+        return CGSize(width: cellAspect * 3 , height: 220)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0.0
     }
-}
-
-
-
-
-
-class DeckCreationViewController: UIViewController {
-    
-    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
-    
-    var collectionView: UICollectionView!
-    
-    @IBOutlet weak var textField: UITextField!
-    
-    @IBAction func submit(_ sender: Any) {
-        var al: UIAlertController
-        if let text = textField.text , text.count >= 5 {
-            print(text)
-            al = UIAlertController(title: nil, message: text, preferredStyle: .alert)
-            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            
-            present(al, animated: true, completion: nil)
-            
-            let newDeck = Deck(context: coreDataStack.managedContext)
-            
-            newDeck.title = text
-            
-            coreDataStack.saveContext()
-            textField.resignFirstResponder()
-            self.presentingViewController?.dismiss(animated: true, completion: {
-                
-            })
-        } else if let text = textField.text, text.count < 5 {
-             al = UIAlertController(title: nil, message: "The name you have entered is too small", preferredStyle: .alert)
-            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            
-        } else {
-             al = UIAlertController(title: nil, message: "Something went wrong here", preferredStyle: .alert)
-            al.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        }
-
-        present(al, animated: true, completion: nil)
-
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
 }
