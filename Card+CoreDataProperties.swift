@@ -26,24 +26,25 @@ extension Card {
     @NSManaged public var imageURL: String?
     @NSManaged public var rarity: String?
     @NSManaged public var text: [String]?
-    @NSManaged public var deck: NSSet?
+    @NSManaged public var quantity: Int32
+    @NSManaged public var decks: NSSet?
 
 }
 
-// MARK: Generated accessors for deck
+// MARK: Generated accessors for decks
 extension Card {
 
-    @objc(addDeckObject:)
-    @NSManaged public func addToDeck(_ value: Deck)
+    @objc(addDecksObject:)
+    @NSManaged public func addToDecks(_ value: Deck)
 
-    @objc(removeDeckObject:)
-    @NSManaged public func removeFromDeck(_ value: Deck)
+    @objc(removeDecksObject:)
+    @NSManaged public func removeFromDecks(_ value: Deck)
 
-    @objc(addDeck:)
-    @NSManaged public func addToDeck(_ values: NSSet)
+    @objc(addDecks:)
+    @NSManaged public func addToDecks(_ values: NSSet)
 
-    @objc(removeDeck:)
-    @NSManaged public func removeFromDeck(_ values: NSSet)
+    @objc(removeDecks:)
+    @NSManaged public func removeFromDecks(_ values: NSSet)
 
 }
 

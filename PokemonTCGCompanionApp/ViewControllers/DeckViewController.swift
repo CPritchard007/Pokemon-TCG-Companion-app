@@ -14,7 +14,7 @@ class DeckViewController: UIViewController {
 
     var deckList = [Deck]()
     lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
-    
+    var selectedItem: Int!
     @IBAction func addButton(_ sender: Any) {
         let ac = UIAlertController(title: "New Deck", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
@@ -78,6 +78,15 @@ class DeckViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCardList" {
+            let cardListVC = segue.destination as! DeckListController
+            if let index = collectionView.indexPathsForSelectedItems?.first {
+                cardListVC.deck = deckList[index.row]
+            }
+        }
+    }
 }
 
 extension DeckViewController: UICollectionViewDelegate {
@@ -98,13 +107,13 @@ extension DeckViewController: UICollectionViewDataSource {
         cell.deckImage.image = UIImage(systemName: "giftcard.fill")
         cell.deckNameLabel.text = deck.title
         
-       
-        
-        
         return cell
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedItem = indexPath.row
+    }
     
 }
 

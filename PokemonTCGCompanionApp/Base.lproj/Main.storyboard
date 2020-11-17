@@ -130,7 +130,7 @@
                                         <connections>
                                             <outlet property="deckImage" destination="049-5T-wUT" id="4RY-8p-QFa"/>
                                             <outlet property="deckNameLabel" destination="KKn-PX-dfC" id="cKx-Sr-qSB"/>
-                                            <segue destination="sra-t7-i18" kind="show" id="5Ki-g5-rVr"/>
+                                            <segue destination="sra-t7-i18" kind="show" identifier="toCardList" id="5Ki-g5-rVr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

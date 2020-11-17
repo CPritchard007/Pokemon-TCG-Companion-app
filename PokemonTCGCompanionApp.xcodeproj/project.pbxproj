@@ -15,10 +15,10 @@
 		26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844571255B86CC00D2A4EA /* ImageCache.swift */; };
 		2684457B255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26844579255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld */; };
 		26844582255C4BA400D2A4EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844581255C4BA400D2A4EA /* CoreDataStack.swift */; };
-		2686A6CC2564693900593AFB /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6C82564693900593AFB /* Card+CoreDataClass.swift */; };
-		2686A6CD2564693900593AFB /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6C92564693900593AFB /* Card+CoreDataProperties.swift */; };
-		2686A6CE2564693900593AFB /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6CA2564693900593AFB /* Deck+CoreDataClass.swift */; };
-		2686A6CF2564693900593AFB /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6CB2564693900593AFB /* Deck+CoreDataProperties.swift */; };
+		2686A6D5256483D900593AFB /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6D1256483D900593AFB /* Card+CoreDataClass.swift */; };
+		2686A6D6256483D900593AFB /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6D2256483D900593AFB /* Card+CoreDataProperties.swift */; };
+		2686A6D7256483D900593AFB /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6D3256483D900593AFB /* Deck+CoreDataClass.swift */; };
+		2686A6D8256483D900593AFB /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686A6D4256483D900593AFB /* Deck+CoreDataProperties.swift */; };
 		269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FD2536785600D6FF08 /* AppDelegate.swift */; };
 		269765002536785600D6FF08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FF2536785600D6FF08 /* SceneDelegate.swift */; };
 		269765022536785600D6FF08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269765012536785600D6FF08 /* ViewController.swift */; };
@@ -41,10 +41,10 @@
 		26844571255B86CC00D2A4EA /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		2684457A255C482500D2A4EA /* pokemonCompanionApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pokemonCompanionApp.xcdatamodel; sourceTree = "<group>"; };
 		26844581255C4BA400D2A4EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		2686A6C82564693900593AFB /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		2686A6C92564693900593AFB /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		2686A6CA2564693900593AFB /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		2686A6CB2564693900593AFB /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2686A6D1256483D900593AFB /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		2686A6D2256483D900593AFB /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2686A6D3256483D900593AFB /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		2686A6D4256483D900593AFB /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		269764FA2536785600D6FF08 /* PokemonTCGCompanionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTCGCompanionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269764FD2536785600D6FF08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269764FF2536785600D6FF08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,10 +90,10 @@
 		26844578255C480F00D2A4EA /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				2686A6C82564693900593AFB /* Card+CoreDataClass.swift */,
-				2686A6C92564693900593AFB /* Card+CoreDataProperties.swift */,
-				2686A6CA2564693900593AFB /* Deck+CoreDataClass.swift */,
-				2686A6CB2564693900593AFB /* Deck+CoreDataProperties.swift */,
+				2686A6D1256483D900593AFB /* Card+CoreDataClass.swift */,
+				2686A6D2256483D900593AFB /* Card+CoreDataProperties.swift */,
+				2686A6D3256483D900593AFB /* Deck+CoreDataClass.swift */,
+				2686A6D4256483D900593AFB /* Deck+CoreDataProperties.swift */,
 				26844579255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld */,
 				26844581255C4BA400D2A4EA /* CoreDataStack.swift */,
 			);
@@ -246,7 +246,7 @@
 			files = (
 				2697651F2538B8F900D6FF08 /* SearchViewController.swift in Sources */,
 				269765022536785600D6FF08 /* ViewController.swift in Sources */,
-				2686A6CF2564693900593AFB /* Deck+CoreDataProperties.swift in Sources */,
+				2686A6D8256483D900593AFB /* Deck+CoreDataProperties.swift in Sources */,
 				26844568255B501600D2A4EA /* DeckListController.swift in Sources */,
 				267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */,
 				26844572255B86CC00D2A4EA /* ImageURLProtocol.swift in Sources */,
@@ -256,12 +256,12 @@
 				269765002536785600D6FF08 /* SceneDelegate.swift in Sources */,
 				2684457B255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld in Sources */,
 				2697652A2538E0AA00D6FF08 /* SearchCollectionCell.swift in Sources */,
-				2686A6CE2564693900593AFB /* Deck+CoreDataClass.swift in Sources */,
-				2686A6CC2564693900593AFB /* Card+CoreDataClass.swift in Sources */,
+				2686A6D7256483D900593AFB /* Deck+CoreDataClass.swift in Sources */,
+				2686A6D5256483D900593AFB /* Card+CoreDataClass.swift in Sources */,
 				26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */,
 				26844565255B4F6A00D2A4EA /* DeckListCell.swift in Sources */,
 				26BA83B9253BF4AB00D9E4A1 /* AttackTableviewCell.swift in Sources */,
-				2686A6CD2564693900593AFB /* Card+CoreDataProperties.swift in Sources */,
+				2686A6D6256483D900593AFB /* Card+CoreDataProperties.swift in Sources */,
 				26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */,
 				267E50D6254FB6F600717B5F /* DeckViewController.swift in Sources */,
 			);

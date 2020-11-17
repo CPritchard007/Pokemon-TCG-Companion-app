@@ -18,24 +18,24 @@ extension Deck {
 
     @NSManaged public var id: UUID?
     @NSManaged public var title: String?
-    @NSManaged public var card: NSSet?
+    @NSManaged public var cards: NSSet?
 
 }
 
-// MARK: Generated accessors for card
+// MARK: Generated accessors for cards
 extension Deck {
 
-    @objc(addCardObject:)
-    @NSManaged public func addToCard(_ value: Card)
+    @objc(addCardsObject:)
+    @NSManaged public func addToCards(_ value: Card)
 
-    @objc(removeCardObject:)
-    @NSManaged public func removeFromCard(_ value: Card)
+    @objc(removeCardsObject:)
+    @NSManaged public func removeFromCards(_ value: Card)
 
-    @objc(addCard:)
-    @NSManaged public func addToCard(_ values: NSSet)
+    @objc(addCards:)
+    @NSManaged public func addToCards(_ values: NSSet)
 
-    @objc(removeCard:)
-    @NSManaged public func removeFromCard(_ values: NSSet)
+    @objc(removeCards:)
+    @NSManaged public func removeFromCards(_ values: NSSet)
 
 }
 

@@ -208,7 +208,7 @@ extension DetailViewController: AddPopoverViewControllerDelegate {
         }
         
         newCard.rarity = card.rarity
-        newCard.addToDeck(deck)
+        newCard.addToDecks(deck)
         
         coreDataStack.saveContext()
     }

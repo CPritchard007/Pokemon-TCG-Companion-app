@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 class DeckListController: UIViewController {
     
     //MARK: - Variables
-    var templateItems = [Item]()
+    var deck: Deck!
+    var cards = [Card]()
     var isTournamentLocked: Bool = true
-    
+    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+
     //MARK: - Outlets
     @IBOutlet weak var deckCountLabel: UILabel!
     @IBOutlet weak var tournamentLock: UIImageView!
@@ -26,15 +29,6 @@ class DeckListController: UIViewController {
         // remove once you can jump to display
         tableView.allowsSelection = false
         
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 113", quantity: 99, supertype: .trainer))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 114", quantity: 99, supertype: .pokemon))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 115", quantity: 99, supertype: .energy))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 116", quantity: 99, supertype: .energy))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 117", quantity: 99, supertype: .pokemon))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 118", quantity: 99, supertype: .trainer))
-        templateItems.append(Item(name: "Temporary Name", ID: "Basel - 119", quantity: 99, supertype: .trainer))
-        
-        
         if isTournamentLocked {
             tournamentLock.image = UIImage(systemName: "lock.fill")
         } else {
@@ -45,14 +39,15 @@ class DeckListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let cardSet = deck.cards as? Set<Card> else { return }
+        cards = Array(cardSet)
         var quantityCount = 0
-        for item in templateItems {
-            quantityCount += item.quantity
+        for item in cards {
+            quantityCount += Int(item.quantity)
         }
         deckCountLabel.text = "\(quantityCount)/60"
     }
-    
-    
 }
 
 extension DeckListController: UITableViewDataSource {
@@ -82,12 +77,14 @@ extension DeckListController: UITableViewDataSource {
         
         switch section {
         case 0:
-            return templateItems.filter {$0.supertype == .pokemon}.count
-            
+            print(cards.filter {$0.superType == "Pokémon" }.count)
+            return cards.filter {$0.superType == "Pokémon" }.count
         case 1:
-            return templateItems.filter {$0.supertype == .trainer}.count
+            print(cards.filter {$0.superType == "Trainer" }.count)
+            return cards.filter {$0.superType == "Trainer" }.count
         case 2:
-            return templateItems.filter {$0.supertype == .energy}.count
+            print(cards.filter {$0.superType == "Energy" }.count)
+            return cards.filter {$0.superType == "Energy" }.count
            
         default:
             return 0
@@ -99,15 +96,18 @@ extension DeckListController: UITableViewDataSource {
         let identifier = "DeckListCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeckListCell
         
-        let pokemon = templateItems.filter {$0.supertype == .pokemon}
-        let trainers = templateItems.filter {$0.supertype == .trainer}
-        let energy = templateItems.filter {$0.supertype == .energy}
+        let pokemon = cards.filter {$0.superType == "Pokémon"}
+        print("POKEMON: \(pokemon)")
+        let trainers = cards.filter {$0.superType == "Trainer"}
+        print("TRAINER: \(trainers)")
+        let energy = cards.filter {$0.superType == "Energy"}
+        print("ENERGY: \(energy)")
         
         if indexPath.section == 0 {
             
             let item = pokemon[indexPath.row]
             cell.nameLabel.text = item.name
-            cell.idLabel.text = item.ID
+            cell.idLabel.text = item.id
             cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
@@ -119,7 +119,7 @@ extension DeckListController: UITableViewDataSource {
             
             let item = trainers[indexPath.row]
             cell.nameLabel.text = item.name
-            cell.idLabel.text = item.ID
+            cell.idLabel.text = item.id
             cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
@@ -131,7 +131,7 @@ extension DeckListController: UITableViewDataSource {
             
             let item = energy[indexPath.row]
             cell.nameLabel.text = item.name
-            cell.idLabel.text = item.ID
+            cell.idLabel.text = item.id
             cell.quantityLabel.text = "x\(item.quantity)"
             
             if indexPath.row % 2 == 0 {
@@ -184,21 +184,4 @@ extension DeckListController: UITableViewDelegate {
     }
 
 }
-
-class Item {
-    let name: String
-    let ID: String
-    var quantity: Int
-    let supertype: SuperType
-    
-    init(name: String, ID: String, quantity: Int, supertype: SuperType) {
-        self.name = name
-        self.ID = ID
-        self.quantity = quantity
-        self.supertype = supertype
-    }
-}
-
-
-
 
