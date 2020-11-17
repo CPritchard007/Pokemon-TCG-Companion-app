@@ -22,7 +22,10 @@ extension Card {
     @NSManaged public var nationalPokedexNumber: Int32
     @NSManaged public var subType: String?
     @NSManaged public var superType: String?
-    @NSManaged public var type: String?
+    @NSManaged public var type: [String]?
+    @NSManaged public var imageURL: String?
+    @NSManaged public var rarity: String?
+    @NSManaged public var text: [String]?
     @NSManaged public var deck: NSSet?
 
 }

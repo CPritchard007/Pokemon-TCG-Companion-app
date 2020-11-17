@@ -8,14 +8,11 @@
 import UIKit
 import CoreData
 
-protocol DetailViewControllerDelegate {
-    func getSubmittedDeck (_ viewController: UIViewController, deck: Deck)
-}
+
 
 class DetailViewController: UIViewController, UITableViewDelegate {
     //MARK: - Variables
     
-    var delegate: DetailViewControllerDelegate!
     var card: CardApi!
     var pickerType = Deck()
     lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
@@ -95,12 +92,10 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addDeckPopover" {
-            let popoverVC = segue.destination as? AddPopoverViewController
+            let popoverVC = segue.destination as! AddPopoverViewController
             
-            popoverVC?.deckList = self.deckList
-            popoverVC?.detailViewController = self
-            
-            
+            popoverVC.deckList = self.deckList
+            popoverVC.delegate = self
             
         }
     }
@@ -190,8 +185,9 @@ extension DetailViewController: UITableViewDataSource {
     }
 }
 
-extension DetailViewController: DetailViewControllerDelegate {
-    func getSubmittedDeck(_ viewController: UIViewController, deck: Deck) {
+extension DetailViewController: AddPopoverViewControllerDelegate {
+    func addToDeck(_ viewController: UIViewController, deck: Deck) {
+        
         viewController.dismiss(animated: true)
         
         let newCard = Card(context: coreDataStack.managedContext)
@@ -202,22 +198,32 @@ extension DetailViewController: DetailViewControllerDelegate {
         // newCard.nationalPokedexNumber = Int32(card.nationalPokedexNumber)
         newCard.superType = card.supertype.rawValue
         newCard.subType = card.supertype.rawValue
+        if let types = card.types {
+            let newTypes: [String] = types.map {$0.rawValue}
+            newCard.type = newTypes
+            
+        }
+        if let text = card.text {
+            newCard.text = text
+        }
         
+        newCard.rarity = card.rarity
         newCard.addToDeck(deck)
+        
+        coreDataStack.saveContext()
     }
 }
 
-extension DetailViewController: UIPopoverPresentationControllerDelegate {
-    
+
+
+protocol AddPopoverViewControllerDelegate: class {
+    func addToDeck (_ viewController: UIViewController, deck: Deck)
 }
-
-
 
 class AddPopoverViewController: UIViewController {
     
-    var detailViewController: UIViewController!
     var deckList: [Deck]!
-    
+    var delegate: AddPopoverViewControllerDelegate!
     var quantity = 1
     
     @IBOutlet weak var deckPicker: UIPickerView!
@@ -237,7 +243,8 @@ class AddPopoverViewController: UIViewController {
         quantityField.text = "\(quantity)"
     }
     @IBAction func submissionButton(_ sender: Any) {
-        
+        let deck = deckList[deckPicker.selectedRow(inComponent: 0)]
+        delegate.addToDeck(self, deck: deck)
     }
     
     override func viewDidLoad() {
@@ -255,6 +262,7 @@ class AddPopoverViewController: UIViewController {
 extension AddPopoverViewController: UIPickerViewDelegate {
     
 }
+
 extension AddPopoverViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -270,7 +278,6 @@ extension AddPopoverViewController: UIPickerViewDataSource {
     
 }
 
-
 extension AddPopoverViewController : UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -282,5 +289,4 @@ extension AddPopoverViewController : UITextFieldDelegate {
         quantity = Int(updatedText)!
         return updatedText.count <= 6
     }
-    
 }

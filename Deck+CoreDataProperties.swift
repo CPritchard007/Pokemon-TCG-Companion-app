@@ -16,9 +16,26 @@ extension Deck {
         return NSFetchRequest<Deck>(entityName: "Deck")
     }
 
-    @NSManaged public var title: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var card: Card?
+    @NSManaged public var title: String?
+    @NSManaged public var card: NSSet?
+
+}
+
+// MARK: Generated accessors for card
+extension Deck {
+
+    @objc(addCardObject:)
+    @NSManaged public func addToCard(_ value: Card)
+
+    @objc(removeCardObject:)
+    @NSManaged public func removeFromCard(_ value: Card)
+
+    @objc(addCard:)
+    @NSManaged public func addToCard(_ values: NSSet)
+
+    @objc(removeCard:)
+    @NSManaged public func removeFromCard(_ values: NSSet)
 
 }
 
