@@ -19,7 +19,7 @@ enum SuperTypePlus: String, CaseIterable {
 
 class SearchViewController: UIViewController, UISearchResultsUpdating {
   
-    //MARK: - Variables
+    //MARK: - Variables    
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
     var cards = [CardApi]()

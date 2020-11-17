@@ -6,10 +6,20 @@
 //
 
 import UIKit
+import CoreData
 
-class DetailViewController: UIViewController, UITableViewDelegate     {
+protocol DetailViewControllerDelegate {
+    func getSubmittedDeck (_ viewController: UIViewController, deck: Deck)
+}
+
+class DetailViewController: UIViewController, UITableViewDelegate {
     //MARK: - Variables
-    var card: CardApi?
+    
+    var delegate: DetailViewControllerDelegate!
+    var card: CardApi!
+    var pickerType = Deck()
+    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    var deckList = [Deck]()
     
     //MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -17,6 +27,12 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
     @IBOutlet weak var hpLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var effectStackview: UIStackView!
+    
+    
+    //MARK: - Actions
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    
     
     ///#WEAKNESS
     @IBOutlet weak var weaknessImage: UIImageView!
@@ -26,15 +42,11 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
     @IBOutlet weak var resistanceImage: UIImageView!
     @IBOutlet weak var resistanceValue: UILabel!
     
-    
     ///#Retreat
     @IBOutlet weak var retreatImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
         
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -77,6 +89,35 @@ class DetailViewController: UIViewController, UITableViewDelegate     {
                 print(retreat)
                 
             }
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addDeckPopover" {
+            let popoverVC = segue.destination as? AddPopoverViewController
+            
+            popoverVC?.deckList = self.deckList
+            popoverVC?.detailViewController = self
+            
+            
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchRequest()
+    }
+    
+    func fetchRequest () {
+        let fetchRequest: NSFetchRequest<Deck> = Deck.fetchRequest()
+        
+        do {
+            deckList = try coreDataStack.managedContext.fetch(fetchRequest)
+        } catch {
+            print("there was a problem grabbing your decks ☹️")
         }
     }
 }
@@ -149,3 +190,97 @@ extension DetailViewController: UITableViewDataSource {
     }
 }
 
+extension DetailViewController: DetailViewControllerDelegate {
+    func getSubmittedDeck(_ viewController: UIViewController, deck: Deck) {
+        viewController.dismiss(animated: true)
+        
+        let newCard = Card(context: coreDataStack.managedContext)
+        
+        newCard.id = card.id
+        newCard.hp = card.hp
+        newCard.name = card.name
+        // newCard.nationalPokedexNumber = Int32(card.nationalPokedexNumber)
+        newCard.superType = card.supertype.rawValue
+        newCard.subType = card.supertype.rawValue
+        
+        newCard.addToDeck(deck)
+    }
+}
+
+extension DetailViewController: UIPopoverPresentationControllerDelegate {
+    
+}
+
+
+
+class AddPopoverViewController: UIViewController {
+    
+    var detailViewController: UIViewController!
+    var deckList: [Deck]!
+    
+    var quantity = 1
+    
+    @IBOutlet weak var deckPicker: UIPickerView!
+    
+    @IBOutlet weak var quantityField: UITextField!
+    
+    @IBAction func addButton(_ sender: Any) {
+        if quantity < 100000 {
+            quantity += 1
+        }
+        quantityField.text = "\(quantity)"
+    }
+    @IBAction func subtractButton(_ sender: Any) {
+        if quantity > 1 {
+            quantity -= 1
+        }
+        quantityField.text = "\(quantity)"
+    }
+    @IBAction func submissionButton(_ sender: Any) {
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        quantityField.delegate = self
+        quantityField.text = "\(quantity)"
+        quantityField.keyboardType = .numberPad
+        
+        deckPicker.delegate = self
+        deckPicker.dataSource = self
+        
+    }
+}
+
+extension AddPopoverViewController: UIPickerViewDelegate {
+    
+}
+extension AddPopoverViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        deckList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return deckList[row].title
+    }
+    
+}
+
+
+extension AddPopoverViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+        let currentText = textField.text ?? ""
+        
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        quantity = Int(updatedText)!
+        return updatedText.count <= 6
+    }
+    
+}

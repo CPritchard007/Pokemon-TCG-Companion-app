@@ -2,7 +2,7 @@
 //  Deck+CoreDataProperties.swift
 //  PokemonTCGCompanionApp
 //
-//  Created by Curtis Pritchard on 2020-11-11.
+//  Created by Curtis Pritchard on 2020-11-17.
 //
 //
 
@@ -17,6 +17,7 @@ extension Deck {
     }
 
     @NSManaged public var title: String?
+    @NSManaged public var id: UUID?
     @NSManaged public var card: Card?
 
 }

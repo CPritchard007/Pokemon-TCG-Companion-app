@@ -27,7 +27,7 @@ class DeckViewController: UIViewController {
                 let newDeck = Deck(context: self.coreDataStack.managedContext)
                 
                 newDeck.title = textField
-                
+                newDeck.id = UUID()
                 self.coreDataStack.saveContext()
                 self.presentingViewController?.dismiss(animated: true, completion: {
                     
