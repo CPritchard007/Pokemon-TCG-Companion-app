@@ -186,7 +186,7 @@ extension DetailViewController: UITableViewDataSource {
 }
 
 extension DetailViewController: AddPopoverViewControllerDelegate {
-    func addToDeck(_ viewController: UIViewController, deck: Deck) {
+    func addToDeck(_ viewController: UIViewController, deck: Deck, quantity: Int) {
         
         viewController.dismiss(animated: true)
         
@@ -195,19 +195,26 @@ extension DetailViewController: AddPopoverViewControllerDelegate {
         newCard.id = card.id
         newCard.hp = card.hp
         newCard.name = card.name
-        // newCard.nationalPokedexNumber = Int32(card.nationalPokedexNumber)
+        
+        if let nationalPokedexNumber = card.nationalPokedexNumber {
+            newCard.nationalPokedexNumber = Int32(nationalPokedexNumber)
+        }
+        
         newCard.superType = card.supertype.rawValue
         newCard.subType = card.supertype.rawValue
+        
         if let types = card.types {
             let newTypes: [String] = types.map {$0.rawValue}
             newCard.type = newTypes
             
         }
+        
         if let text = card.text {
             newCard.text = text
         }
         
         newCard.rarity = card.rarity
+        newCard.quantity = Int32(quantity)
         newCard.addToDecks(deck)
         
         coreDataStack.saveContext()
@@ -217,7 +224,7 @@ extension DetailViewController: AddPopoverViewControllerDelegate {
 
 
 protocol AddPopoverViewControllerDelegate: class {
-    func addToDeck (_ viewController: UIViewController, deck: Deck)
+    func addToDeck (_ viewController: UIViewController, deck: Deck, quantity: Int)
 }
 
 class AddPopoverViewController: UIViewController {
@@ -244,7 +251,7 @@ class AddPopoverViewController: UIViewController {
     }
     @IBAction func submissionButton(_ sender: Any) {
         let deck = deckList[deckPicker.selectedRow(inComponent: 0)]
-        delegate.addToDeck(self, deck: deck)
+        delegate.addToDeck(self, deck: deck, quantity: quantity)
     }
     
     override func viewDidLoad() {

@@ -42,6 +42,7 @@ class DeckListController: UIViewController {
         
         guard let cardSet = deck.cards as? Set<Card> else { return }
         cards = Array(cardSet)
+        print(cards)
         var quantityCount = 0
         for item in cards {
             quantityCount += Int(item.quantity)
