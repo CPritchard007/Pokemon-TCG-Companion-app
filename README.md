@@ -1,2 +1,4 @@
-# Pokemon-TCG-Companion-app
-The application that allows the user to store there decks
+#The Pokemon Companion App
+
+An application that allows you to store your decks using your phone with ease.
+
