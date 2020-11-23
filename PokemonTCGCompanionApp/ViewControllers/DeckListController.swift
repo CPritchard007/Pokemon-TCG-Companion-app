@@ -40,6 +40,8 @@ class DeckListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print(deck ?? "")
+        
         guard let cardSet = deck.cards as? Set<Card> else { return }
         cards = Array(cardSet)
         print(cards)
@@ -48,7 +50,11 @@ class DeckListController: UIViewController {
             quantityCount += Int(item.quantity)
         }
         deckCountLabel.text = "\(quantityCount)/60"
+        tableView.reloadData()
     }
+    
+
+    
 }
 
 extension DeckListController: UITableViewDataSource {
@@ -143,34 +149,33 @@ extension DeckListController: UITableViewDataSource {
             return cell
         }
     }
-    
 
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
+       
+        
         
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
-          
+            
+
         }
         add.backgroundColor = UIColor(named: "secondaryColor")
         add.image = UIImage(systemName: "plus")
         
     
         let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
-          
+            
+            
+            
         }
         
         remove.backgroundColor = UIColor(named: "secondaryColor")
         remove.image = UIImage(systemName: "minus")
         
-        
+    
         let configuration = UISwipeActionsConfiguration(actions: [add, remove])
-        
-        configuration.performsFirstActionWithFullSwipe = true
-
+        configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
     

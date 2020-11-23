@@ -83,6 +83,8 @@ class DeckViewController: UIViewController {
         if segue.identifier == "toCardList" {
             let cardListVC = segue.destination as! DeckListController
             if let index = collectionView.indexPathsForSelectedItems?.first {
+                fetchRequest()
+                print(deckList[index.row])
                 cardListVC.deck = deckList[index.row]
             }
         }
