@@ -187,37 +187,49 @@ extension DetailViewController: UITableViewDataSource {
 
 extension DetailViewController: AddPopoverViewControllerDelegate {
     func addToDeck(_ viewController: UIViewController, deck: Deck, quantity: Int) {
-        
         viewController.dismiss(animated: true)
         
-        let newCard = Card(context: coreDataStack.managedContext)
         
-        newCard.id = card.id
-        newCard.hp = card.hp
-        newCard.name = card.name
-        
-        if let nationalPokedexNumber = card.nationalPokedexNumber {
-            newCard.nationalPokedexNumber = Int32(nationalPokedexNumber)
+        guard let cardSet = deck.cards as? Set<Card> else { return }
+        let card = cardSet.first { card -> Bool in
+            return card.id == self.card.id
         }
         
-        newCard.superType = card.supertype.rawValue
-        newCard.subType = card.supertype.rawValue
-        
-        if let types = card.types {
-            let newTypes: [String] = types.map {$0.rawValue}
-            newCard.type = newTypes
+        if (card == nil) {
+            let newCard = Card(context: coreDataStack.managedContext)
             
+            newCard.id = self.card.id
+            newCard.hp = self.card.hp
+            newCard.name = self.card.name
+            
+            if let nationalPokedexNumber = self.card.nationalPokedexNumber {
+                newCard.nationalPokedexNumber = Int32(nationalPokedexNumber)
+            }
+            
+            newCard.superType = self.card.supertype.rawValue
+            newCard.subType = self.card.supertype.rawValue
+            
+            if let types = self.card.types {
+                let newTypes: [String] = types.map {$0.rawValue}
+                newCard.type = newTypes
+                
+            }
+            
+            if let text = self.card.text {
+                newCard.text = text
+            }
+            
+            newCard.rarity = self.card.rarity
+            newCard.quantity = Int32(quantity)
+            newCard.addToDecks(deck)
+            
+            coreDataStack.saveContext()
+        
+        } else {
+        
+            card?.setValue(card!.quantity + Int32(quantity) ,forKey: "quantity")
+            self.coreDataStack.saveContext()
         }
-        
-        if let text = card.text {
-            newCard.text = text
-        }
-        
-        newCard.rarity = card.rarity
-        newCard.quantity = Int32(quantity)
-        newCard.addToDecks(deck)
-        
-        coreDataStack.saveContext()
     }
 }
 

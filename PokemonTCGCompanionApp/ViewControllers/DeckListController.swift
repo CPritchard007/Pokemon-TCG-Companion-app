@@ -150,7 +150,7 @@ extension DeckListController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
+    
         
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
           
@@ -169,7 +169,7 @@ extension DeckListController: UITableViewDataSource {
         
         let configuration = UISwipeActionsConfiguration(actions: [add, remove])
         
-        configuration.performsFirstActionWithFullSwipe = false
+        configuration.performsFirstActionWithFullSwipe = true
 
         return configuration
     }
