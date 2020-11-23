@@ -35,15 +35,27 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var weaknessImage: UIImageView!
     @IBOutlet weak var weaknessValue: UILabel!
     
+    @IBOutlet weak var WeaknessStack: UIStackView!
+    
+    
     ///#Resistance
     @IBOutlet weak var resistanceImage: UIImageView!
     @IBOutlet weak var resistanceValue: UILabel!
     
+    @IBOutlet weak var resistanceStack: UIStackView!
+    
+    
     ///#Retreat
     @IBOutlet weak var retreatImage: UIImageView!
     
+    @IBOutlet weak var retreatStack: UIStackView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -69,6 +81,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             }
         } else {
             weaknessValue.text = "N/A"
+            weaknessImage.image = nil
             weaknessValue.textColor = UIColor.lightGray
         }
         if let resistances = card?.resistances {
@@ -78,15 +91,22 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             }
         } else {
             resistanceValue.text = "N/A"
+            resistanceImage.image = nil
             resistanceValue.textColor = UIColor.lightGray
         }
         
         if let retreat = card?.retreatCost {
         retreat.forEach { retreat in
-                print(retreat)
+                
                 
             }
+        } else {
+            retreatImage.image = nil
+            
         }
+        
+        
+        print(WeaknessStack.subviews.count)
         
     }
     
@@ -159,10 +179,16 @@ extension DetailViewController: UITableViewDataSource {
                 let identifier = "AttackTableviewCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
                 if let attacks: [Attack] = card?.attacks {
-                    let attack = attacks[indexPath.row - 1]
-                    cell.attackNameLabel.text = attack.name
-                    cell.descriptionLabel.text = attack.text
-                    cell.damageLabel.text = attack.damage
+                    for attack in attacks {
+                        
+                        cell.attackNameLabel.text = attack.name
+                        cell.descriptionLabel.text = attack.text
+                        cell.damageLabel.text = attack.damage
+                        if let attackCost = attack.cost?.first {
+                            print("Type\(attackCost)")
+                            cell.typeImageView.image = UIImage(named: "Type\(attackCost)")
+                        }
+                    }
 //                    if let type = attack.cost?.first?.rawValue {
 //                        cell.typeImageView.image = UIImage(named: "Type\(type)")
 //                    }
@@ -174,10 +200,15 @@ extension DetailViewController: UITableViewDataSource {
             let identifier = "AttackTableviewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
             if let attacks: [Attack] = card?.attacks {
-                let attack = attacks[indexPath.row]
-                cell.attackNameLabel.text = attack.name
-                cell.descriptionLabel.text = attack.text
-                cell.damageLabel.text = attack.damage
+                for attack in attacks {
+                    cell.attackNameLabel.text = attack.name
+                    cell.descriptionLabel.text = attack.text
+                    cell.damageLabel.text = attack.damage
+                    if let attackCost = attack.cost?.first {
+                        print("Type\(attackCost)")
+                        cell.typeImageView.image = UIImage(named: "Type\(attackCost)")
+                    }
+                }
             }
             
             return cell
