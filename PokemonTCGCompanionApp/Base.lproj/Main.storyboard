@@ -883,7 +883,7 @@
         <segue reference="PCT-qy-7v4"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="TypeDarkness" width="150" height="150"/>
+        <image name="TypeDarkness" width="500" height="500"/>
         <image name="TypeFighter" width="75" height="75"/>
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>
