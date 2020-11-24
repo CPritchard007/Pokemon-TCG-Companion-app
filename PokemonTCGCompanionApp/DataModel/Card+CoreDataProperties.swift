@@ -2,7 +2,7 @@
 //  Card+CoreDataProperties.swift
 //  PokemonTCGCompanionApp
 //
-//  Created by Curtis Pritchard on 2020-11-23.
+//  Created by Curtis Pritchard on 2020-11-24.
 //
 //
 

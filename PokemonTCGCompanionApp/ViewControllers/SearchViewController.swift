@@ -84,7 +84,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
             urlString = "https://api.pokemontcg.io/v1/cards?page=1&pageSize=\(pageSize)"
         }
         
-        print(urlString)
         do {
             let url = URL(string: urlString)
             if let url = url {let data = try Data(contentsOf: url)
@@ -125,7 +124,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationSegue = segue.destination as? DetailViewController else { return }
         if let index = collectionView.indexPathsForSelectedItems?.first?.row {
-            print("indexOf: \(index)")
             destinationSegue.card = cards[index]
         }
     }

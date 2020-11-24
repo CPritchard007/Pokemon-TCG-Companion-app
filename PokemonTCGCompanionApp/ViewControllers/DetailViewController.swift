@@ -126,7 +126,6 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         
         
         if let name = card?.name {
-            print(name)
             nameLabel.text = name
             if card.hp != "None" {
                 hpLabel.text = "HP \(card?.hp ?? "")"
@@ -136,9 +135,8 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         weaknessValue.textColor = .darkText
         if let weaknesses = card?.weaknesses {
         weaknesses.forEach { weakness in
-                print(weakness)
                 weaknessValue.text = weakness.value
-            print("Type\(weakness.type)")
+//            print("Type\(weakness.type)")
             weaknessImage.image = UIImage(named: "Type\(weakness.type.rawValue)")
             }
             
@@ -152,9 +150,8 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         resistanceValue.textColor = .darkText
         if let resistances = card?.resistances {
         resistances.forEach { resistance in
-                print(resistance)
                 resistanceValue.text = resistance.value
-            print("Type\(resistance.type)")
+            // print("Type\(resistance.type)")
             resistanceImage.image = UIImage(named: "Type\(resistance.type.rawValue)")
             }
         } else {
@@ -176,10 +173,6 @@ class DetailViewController: UIViewController, UITableViewDelegate {
                 retreatStack.addArrangedSubview(retreatImage)
             }
         }
-        
-        
-        print(WeaknessStack.subviews.count)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

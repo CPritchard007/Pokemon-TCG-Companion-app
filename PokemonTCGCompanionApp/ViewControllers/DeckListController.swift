@@ -39,12 +39,9 @@ class DeckListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        print(deck ?? "")
-        
+            
         guard let cardSet = deck.cards as? Set<Card> else { return }
         cards = Array(cardSet)
-        print(cards)
         var quantityCount = 0
         for item in cards {
             quantityCount += Int(item.quantity)
@@ -152,7 +149,8 @@ extension DeckListController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
+        //TODO: add and remove from quantity
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
        
         
         

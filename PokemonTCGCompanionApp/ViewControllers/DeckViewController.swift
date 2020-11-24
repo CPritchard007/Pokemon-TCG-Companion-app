@@ -23,10 +23,39 @@ class DeckViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (alertAction) in
             if let textField = ac.textFields![0].text, textField.count > 5 {
-                
+            
                 let newDeck = Deck(context: self.coreDataStack.managedContext)
                 
                 newDeck.title = textField
+                
+                
+                switch Int.random(in: 0...10) {
+                case 0:
+                    
+                    newDeck.color = UIColor.purple.toString()
+                case 1:
+                    newDeck.color = UIColor.cyan.toString()
+                case 2:
+                    newDeck.color = UIColor.red.toString()
+                case 3:
+                    newDeck.color = UIColor.yellow.toString()
+                case 4:
+                    newDeck.color = UIColor.green.toString()
+                case 5:
+                    newDeck.color = UIColor.magenta.toString()
+                case 6:
+                    newDeck.color = UIColor.orange.toString()
+                case 7:
+                    newDeck.color = UIColor.brown.toString()
+                case 8:
+                    newDeck.color = UIColor.blue.toString()
+                case 9:
+                    newDeck.color = UIColor.white.toString()
+                default:
+                    newDeck.color = UIColor.white.toString()
+                }
+               
+                
                 newDeck.id = UUID()
                 self.coreDataStack.saveContext()
                 self.presentingViewController?.dismiss(animated: true, completion: {
@@ -92,6 +121,10 @@ class DeckViewController: UIViewController {
             }
         }
     }
+    
+    @objc func onLongPress (_ gestureRecognizer: UILongPressGestureRecognizer) {
+        print("yuuuuuuuuuuuuuuuuuus")
+    }
 }
 
 extension DeckViewController: UICollectionViewDelegate {
@@ -108,8 +141,32 @@ extension DeckViewController: UICollectionViewDataSource {
         let identifier = "deckCollectionCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DeckCollectionCell
         
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: cell, action: #selector(self.onLongPress))
+        
+        
+        
+        
+        cell.addGestureRecognizer(longPressRecognizer)
+        
         let deck = deckList[indexPath.row]
-        cell.deckImage.image = UIImage(systemName: "giftcard.fill")
+
+        if let colors = deck.color?.split(separator: " "), colors.count == 4 {
+            // https://www.hackingwithswift.com/example-code/uikit/how-to-recolor-uiimages-using-template-images-and-withrenderingmode
+            
+            if let tintedImage = UIImage(named: "packFront") {
+                let tintableImage = tintedImage.withRenderingMode(.alwaysTemplate)
+                cell.frontImage.image = tintableImage
+            }
+            if let red = Float(colors[0]), let green = Float(colors[1]), let blue = Float(colors[2]){
+                cell.frontImage.tintColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
+            } else {
+                print("error")
+            }
+            
+            
+        }
+
         cell.deckNameLabel.text = deck.title
         
         return cell
@@ -137,5 +194,18 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0.0
+    }
+}
+
+extension UIColor {
+    func toString () -> (String) {
+        guard let component = self.cgColor.components else {return ""}
+        var newString = ""
+        for comp in component {
+            newString += "\(Int(comp)) "
+        }
+        newString.removeLast()
+        print(newString)
+        return newString
     }
 }
