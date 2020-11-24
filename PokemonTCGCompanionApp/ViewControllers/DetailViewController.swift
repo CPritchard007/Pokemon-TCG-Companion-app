@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 
-
 class DetailViewController: UIViewController, UITableViewDelegate {
     //MARK: - Variables
     
@@ -17,6 +16,9 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     var pickerType = Deck()
     lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
     var deckList = [Deck]()
+    var backgroundColor: UIColor = UIColor()
+    var textColor: UIColor = UIColor()
+    
     
     //MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -28,8 +30,6 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     
     //MARK: - Actions
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    
     
     ///#WEAKNESS
     @IBOutlet weak var weaknessImage: UIImageView!
@@ -54,8 +54,67 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
+       
+        switch card.types?.first {
+            case .some(.colorless):
+                backgroundColor = .lightGray
+                textColor = .darkText
+                break
+
+            case .some(.darkness):
+                backgroundColor = .darkGray
+                textColor = .white
+                break
+            case .some(.dragon):
+                backgroundColor = .brown
+                textColor = .white
+                break
+            case .some(.fairy):
+                backgroundColor = .systemPink
+                textColor = .darkText
+                break
+            case .some(.fighting):
+                backgroundColor = UIColor.orange
+                textColor = .white
+                break
+            case .some(.fire):
+                backgroundColor = .red
+                textColor = .white
+                break
+            case .some(.grass):
+                backgroundColor = .systemGreen
+                textColor = .white
+                break
+            case .some(.lightning):
+                backgroundColor = .systemYellow
+                textColor = .darkText
+                break
+            case .some(.metal):
+                backgroundColor = .systemGray
+                textColor = .white
+                break
+            case .some(.psychic):
+                backgroundColor = .systemPurple
+                textColor = .white
+                break
+            case .some(.water):
+                backgroundColor = UIColor(named: "secondaryColor")!
+                textColor = .white
+                break
+            default:
+                backgroundColor = .white
+                textColor = .darkText
+                break
+        }
+
         
+        backgroundColor = backgroundColor.withAlphaComponent(0.8)
+        view.backgroundColor = backgroundColor
+        tableView.backgroundColor = backgroundColor
+        nameLabel.textColor = textColor
+        hpLabel.textColor = textColor
         
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -73,7 +132,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             hpLabel.text = card?.hp ?? ""
         }
         
-        
+        weaknessValue.textColor = .darkText
         if let weaknesses = card?.weaknesses {
         weaknesses.forEach { weakness in
                 print(weakness)
@@ -84,6 +143,9 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             weaknessImage.image = nil
             weaknessValue.textColor = UIColor.lightGray
         }
+        
+        
+        resistanceValue.textColor = .darkText
         if let resistances = card?.resistances {
         resistances.forEach { resistance in
                 print(resistance)
@@ -96,8 +158,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         }
         
         if let retreat = card?.retreatCost {
-        retreat.forEach { retreat in
-                
+            retreat.forEach { retreat in
                 
             }
         } else {
@@ -116,6 +177,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             
             popoverVC.deckList = self.deckList
             popoverVC.delegate = self
+            popoverVC.backgroundColor = backgroundColor
             
         }
     }
@@ -150,6 +212,8 @@ extension DetailViewController: UITableViewDataSource {
         } else {
             return 0
         }
+        
+        
 
     }
 
@@ -158,18 +222,20 @@ extension DetailViewController: UITableViewDataSource {
         if let cardSuperType = card?.supertype, cardSuperType == .trainer, let trainerText = card?.text {
             let identifier = "TrainerTableviewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! TrainerTableViewCell
-            
+
             cell.trainerDescription.text = trainerText[indexPath.row]
-            
+            cell.trainerDescription.textColor = textColor
             return cell
         }
-        
         
         
         if let ability = card?.ability {
             if indexPath.row == 0 {
                 let identifier = "AbilityTableviewCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AbilityTableViewCell
+                
+                cell.subviews.first?.backgroundColor = self.backgroundColor
+                
                 cell.abilityNameLabel.text = ability.name
                 cell.abilityText.text = ability.text
                 cell.abilityTypeImage.image = UIImage(named: "abilityImage")
@@ -178,35 +244,60 @@ extension DetailViewController: UITableViewDataSource {
             } else {
                 let identifier = "AttackTableviewCell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
+
+
                 if let attacks: [Attack] = card?.attacks {
-                    for attack in attacks {
-                        
-                        cell.attackNameLabel.text = attack.name
-                        cell.descriptionLabel.text = attack.text
-                        cell.damageLabel.text = attack.damage
-                        if let attackCost = attack.cost?.first {
-                            print("Type\(attackCost)")
-                            cell.typeImageView.image = UIImage(named: "Type\(attackCost)")
+                    let attack = attacks[indexPath.row - 1]
+                    
+                    cell.attackNameLabel.text = attack.name
+                    cell.descriptionLabel.text = attack.text
+                    cell.damageLabel.text = attack.damage
+                    
+                    if let attackValues = attack.cost {
+                        for attackValue in attackValues {
+                            
+                            let valueImage = UIImageView(image: UIImage(named: "Type\(attackValue)")!)
+                            
+                            let widthConstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                            valueImage.addConstraint(widthConstraint)
+                            let heightContstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                            
+                            valueImage.addConstraints([widthConstraint,heightContstraint])
+                            cell.valueStack.addArrangedSubview(valueImage)
                         }
                     }
-//                    if let type = attack.cost?.first?.rawValue {
-//                        cell.typeImageView.image = UIImage(named: "Type\(type)")
-//                    }
                 }
+                    
                 return cell
             }
             
         } else {
             let identifier = "AttackTableviewCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! AttackTableViewCell
+
+
             if let attacks: [Attack] = card?.attacks {
-                for attack in attacks {
-                    cell.attackNameLabel.text = attack.name
-                    cell.descriptionLabel.text = attack.text
-                    cell.damageLabel.text = attack.damage
-                    if let attackCost = attack.cost?.first {
-                        print("Type\(attackCost)")
-                        cell.typeImageView.image = UIImage(named: "Type\(attackCost)")
+                let attack = attacks[indexPath.row]
+                
+                cell.attackNameLabel.text = attack.name
+                cell.attackNameLabel.textColor = textColor
+                
+                cell.descriptionLabel.text = attack.text
+                cell.descriptionLabel.textColor = textColor
+                
+                cell.damageLabel.text = attack.damage
+                cell.damageLabel.textColor = textColor
+                
+                if let attackValues = attack.cost {
+                    for attackValue in attackValues {
+                        let valueImage = UIImageView(image: UIImage(named: "Type\(attackValue)")!)
+                        
+                        let widthConstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                        valueImage.addConstraint(widthConstraint)
+                        let heightContstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                        
+                        valueImage.addConstraints([widthConstraint,heightContstraint])
+                        cell.valueStack.addArrangedSubview(valueImage)
                     }
                 }
             }
@@ -271,7 +362,7 @@ protocol AddPopoverViewControllerDelegate: class {
 }
 
 class AddPopoverViewController: UIViewController {
-    
+    var backgroundColor: UIColor!
     var deckList: [Deck]!
     var delegate: AddPopoverViewControllerDelegate!
     var quantity = 1
@@ -307,6 +398,12 @@ class AddPopoverViewController: UIViewController {
         deckPicker.dataSource = self
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.backgroundColor = self.backgroundColor.withAlphaComponent(1)
+        quantityField.backgroundColor = .white
+    }
 }
 
 extension AddPopoverViewController: UIPickerViewDelegate {
@@ -340,3 +437,4 @@ extension AddPopoverViewController : UITextFieldDelegate {
         return updatedText.count <= 6
     }
 }
+

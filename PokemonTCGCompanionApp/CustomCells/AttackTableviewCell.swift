@@ -9,11 +9,13 @@ import UIKit
 
 class AttackTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var attackNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var damageLabel: UILabel!
+  
+    
+    @IBOutlet weak var valueStack: UIStackView!
     
 }
 class AbilityTableViewCell: UITableViewCell {
@@ -21,9 +23,7 @@ class AbilityTableViewCell: UITableViewCell {
     @IBOutlet weak var abilityTypeImage: UIImageView!
     
     @IBOutlet weak var abilityNameLabel: UILabel!
-    
-    @IBOutlet weak var abilityType: UILabel!
-    
+        
     @IBOutlet weak var abilityText: UILabel!
     
     

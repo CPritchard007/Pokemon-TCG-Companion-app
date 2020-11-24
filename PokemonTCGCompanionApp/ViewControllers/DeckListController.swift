@@ -183,7 +183,7 @@ extension DeckListController: UITableViewDataSource {
 
 extension DeckListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(named: "primaryColor")
+        view.tintColor = UIColor(named: "secondaryColor")
         let headerView = view as! UITableViewHeaderFooterView
             headerView.textLabel?.textColor = UIColor.white
         

@@ -48,6 +48,8 @@ class DeckViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +61,7 @@ class DeckViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         collectionView.collectionViewLayout.invalidateLayout()
+        
     }
     
     
