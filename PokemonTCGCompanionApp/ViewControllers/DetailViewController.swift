@@ -46,8 +46,6 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     
     
     ///#Retreat
-    @IBOutlet weak var retreatImage: UIImageView!
-    
     @IBOutlet weak var retreatStack: UIStackView!
     
     
@@ -113,6 +111,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         backgroundColor = backgroundColor.withAlphaComponent(0.8)
         view.backgroundColor = backgroundColor
         tableView.backgroundColor = backgroundColor
+        
         nameLabel.textColor = textColor
         hpLabel.textColor = textColor
         
@@ -129,7 +128,9 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         if let name = card?.name {
             print(name)
             nameLabel.text = name
-            hpLabel.text = card?.hp ?? ""
+            if card.hp != "None" {
+                hpLabel.text = "HP \(card?.hp ?? "")"
+            }
         }
         
         weaknessValue.textColor = .darkText
@@ -137,7 +138,10 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         weaknesses.forEach { weakness in
                 print(weakness)
                 weaknessValue.text = weakness.value
+            print("Type\(weakness.type)")
+            weaknessImage.image = UIImage(named: "Type\(weakness.type.rawValue)")
             }
+            
         } else {
             weaknessValue.text = "N/A"
             weaknessImage.image = nil
@@ -150,6 +154,8 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         resistances.forEach { resistance in
                 print(resistance)
                 resistanceValue.text = resistance.value
+            print("Type\(resistance.type)")
+            resistanceImage.image = UIImage(named: "Type\(resistance.type.rawValue)")
             }
         } else {
             resistanceValue.text = "N/A"
@@ -160,10 +166,15 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         if let retreat = card?.retreatCost {
             retreat.forEach { retreat in
                 
+                let retreatImage = UIImageView(image: UIImage(named: "Type\(retreat.rawValue)"))
+                
+                let widthConstraint = NSLayoutConstraint(item: retreatImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 25)
+                retreatImage.addConstraint(widthConstraint)
+                let heightContstraint = NSLayoutConstraint(item: retreatImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 25)
+                retreatImage.addConstraint(heightContstraint)
+                
+                retreatStack.addArrangedSubview(retreatImage)
             }
-        } else {
-            retreatImage.image = nil
-            
         }
         
         
@@ -237,8 +248,12 @@ extension DetailViewController: UITableViewDataSource {
                 cell.subviews.first?.backgroundColor = self.backgroundColor
                 
                 cell.abilityNameLabel.text = ability.name
+                cell.abilityNameLabel.textColor = textColor
+
                 cell.abilityText.text = ability.text
-                cell.abilityTypeImage.image = UIImage(named: "abilityImage")
+                cell.abilityText.textColor = textColor
+
+                cell.abilityTypeImage.image = UIImage(named: "Ability\(ability.type)")
                 return cell
 
             } else {
@@ -250,8 +265,14 @@ extension DetailViewController: UITableViewDataSource {
                     let attack = attacks[indexPath.row - 1]
                     
                     cell.attackNameLabel.text = attack.name
+                    cell.attackNameLabel.textColor = textColor
+
                     cell.descriptionLabel.text = attack.text
+                    cell.descriptionLabel.textColor = textColor
+
                     cell.damageLabel.text = attack.damage
+                    cell.damageLabel.textColor = textColor
+
                     
                     if let attackValues = attack.cost {
                         for attackValue in attackValues {
@@ -292,9 +313,9 @@ extension DetailViewController: UITableViewDataSource {
                     for attackValue in attackValues {
                         let valueImage = UIImageView(image: UIImage(named: "Type\(attackValue)")!)
                         
-                        let widthConstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                        let widthConstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 25)
                         valueImage.addConstraint(widthConstraint)
-                        let heightContstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 30)
+                        let heightContstraint = NSLayoutConstraint(item: valueImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 25)
                         
                         valueImage.addConstraints([widthConstraint,heightContstraint])
                         cell.valueStack.addArrangedSubview(valueImage)

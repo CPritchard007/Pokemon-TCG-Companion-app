@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ability mark.png",
+      "filename" : "poke-power.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ability mark-1.png",
+      "filename" : "poke-power-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ability mark-2.png",
+      "filename" : "poke-power-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
