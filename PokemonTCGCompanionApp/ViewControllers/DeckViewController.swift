@@ -147,9 +147,11 @@ class DeckViewController: UIViewController {
         guard let index = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else { return }
         let ac = UIAlertController(title: "Are You Sure?", message: "by deleting this ", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+            self.coreDataStack.managedContext.delete(self.deckList[index.row])
             self.deckList.remove(at: index.row)
-            self.coreDataStack.saveContext()
             self.collectionView.reloadData()
+            self.coreDataStack.saveContext()
+
         }))
      
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
