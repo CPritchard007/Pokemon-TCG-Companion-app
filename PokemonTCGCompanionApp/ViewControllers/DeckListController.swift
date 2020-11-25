@@ -13,8 +13,12 @@ class DeckListController: UIViewController {
     //MARK: - Variables
     var deck: Deck!
     var cards = [Card]()
+    var localCardSet: Set<Card>!
     var isTournamentLocked: Bool = true
     var coreDataStack: CoreDataStack!
+    var pokemon = [Card]()
+    var trainer = [Card]()
+    var energy = [Card]()
 
     //MARK: - Outlets
     @IBOutlet weak var deckCountLabel: UILabel!
@@ -41,8 +45,11 @@ class DeckListController: UIViewController {
         super.viewWillAppear(animated)
             
         guard let cardSet = deck.cards as? Set<Card> else { return }
-        
+        localCardSet = cardSet
         cards = Array(cardSet)
+        
+        pokemonReshuffle()
+        
         var quantityCount = 0
         for item in cards {
             quantityCount += Int(item.quantity)
@@ -51,7 +58,11 @@ class DeckListController: UIViewController {
         tableView.reloadData()
     }
     
-
+    func pokemonReshuffle () {
+        pokemon = cards.filter {$0.superType == "Pokémon"}
+        trainer = cards.filter {$0.superType == "Trainer"}
+        energy = cards.filter {$0.superType == "Energy"}
+    }
     
 }
 
@@ -82,14 +93,11 @@ extension DeckListController: UITableViewDataSource {
         
         switch section {
         case 0:
-            print(cards.filter {$0.superType == "Pokémon" }.count)
-            return cards.filter {$0.superType == "Pokémon" }.count
+            return pokemon.count
         case 1:
-            print(cards.filter {$0.superType == "Trainer" }.count)
-            return cards.filter {$0.superType == "Trainer" }.count
+            return trainer.count
         case 2:
-            print(cards.filter {$0.superType == "Energy" }.count)
-            return cards.filter {$0.superType == "Energy" }.count
+            return energy.count
            
         default:
             return 0
@@ -101,12 +109,6 @@ extension DeckListController: UITableViewDataSource {
         let identifier = "DeckListCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeckListCell
         
-        let pokemon = cards.filter {$0.superType == "Pokémon"}
-        print("POKEMON: \(pokemon)")
-        let trainers = cards.filter {$0.superType == "Trainer"}
-        print("TRAINER: \(trainers)")
-        let energy = cards.filter {$0.superType == "Energy"}
-        print("ENERGY: \(energy)")
         
         if indexPath.section == 0 {
             
@@ -122,7 +124,7 @@ extension DeckListController: UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             
-            let item = trainers[indexPath.row]
+            let item = trainer[indexPath.row]
             cell.nameLabel.text = item.name
             cell.idLabel.text = item.id
             cell.quantityLabel.text = "x\(item.quantity)"
@@ -150,27 +152,65 @@ extension DeckListController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as? DeckListCell
+        var currentCard: Card?
         
-        
-        let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
-            print("----\(indexPath.section):\(indexPath.row) => \(cell?.idLabel.text)")
+        switch indexPath.section {
+        case 0:
+            currentCard = pokemon[indexPath.row]
+        case 1:
+            currentCard = trainer[indexPath.row]
+        case 2:
+            currentCard = energy[indexPath.row]
+        default:
+            currentCard = nil
         }
         
-        add.backgroundColor = UIColor(named: "secondaryColor")
+        guard let card = currentCard else { return nil }
+        
+        let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, completion) in
+            card.quantity += 1
+            tableView.reloadRows(at: [indexPath], with: .none)
+            completion(true)
+        }
+        add.backgroundColor = UIColor(named: "primaryColor")
         add.image = UIImage(systemName: "plus")
         
     
-        let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
+        let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, completion) in
+    
+            if card.quantity == 1 {
+                let ac = UIAlertController(title: "are you sure?", message: "by removing this, the card will no longer be stored localy, and will have to be re-added", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+                    self.deck.removeFromCards(card)
+                    
+                    self.cards.removeAll(where: {
+                        return $0.id == card.id
+                    })
+                    self.pokemonReshuffle()
+                    tableView.reloadData()
+                }))
+                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(ac, animated: true, completion: nil)
+            } else {
+                card.quantity -= 1
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+            
+            completion(true)
 
         }
-        
         remove.backgroundColor = UIColor(named: "secondaryColor")
         remove.image = UIImage(systemName: "minus")
+        
         
         let configuration = UISwipeActionsConfiguration(actions: [add, remove])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        self.coreDataStack.saveContext()
     }
     
 }

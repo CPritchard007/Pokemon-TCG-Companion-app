@@ -22,6 +22,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     //MARK: - Variables    
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
+    
     var cards = [CardApi]()
     var cardImage = [UIImage]()
     var coreDataStack: CoreDataStack!

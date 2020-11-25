@@ -182,6 +182,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             popoverVC.deckList = self.deckList
             popoverVC.delegate = self
             popoverVC.backgroundColor = backgroundColor
+            popoverVC.textColor = self.textColor
             
         }
     }
@@ -328,7 +329,8 @@ extension DetailViewController: AddPopoverViewControllerDelegate {
         
         guard let cardSet = deck.cards as? Set<Card> else { return }
         let card = cardSet.first { card -> Bool in
-            return card.id == self.card.id
+            print("---- \(self.card.id) == \(card.id) => \(self.card.id == card.id)")
+            return self.card.id == card.id
         }
         
         if (card == nil) {
@@ -386,6 +388,9 @@ class AddPopoverViewController: UIViewController {
     
     @IBOutlet weak var quantityField: UITextField!
     
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var addToDeckLabel: UILabel!
+    
     @IBAction func addButton(_ sender: Any) {
         if quantity < 100000 {
             quantity += 1
@@ -409,15 +414,19 @@ class AddPopoverViewController: UIViewController {
         quantityField.text = "\(quantity)"
         quantityField.keyboardType = .numberPad
         
+        quantityLabel.textColor = self.textColor
+        addToDeckLabel.textColor = self.textColor
+        
         deckPicker.delegate = self
         deckPicker.dataSource = self
+        
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        for deck in deckList {
-        }
+        
         view.backgroundColor = self.backgroundColor.withAlphaComponent(1)
         quantityField.backgroundColor = .white
     }
