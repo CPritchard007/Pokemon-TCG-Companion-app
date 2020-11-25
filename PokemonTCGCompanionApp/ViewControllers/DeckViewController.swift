@@ -10,18 +10,18 @@ import CoreData
 
 
 class DeckViewController: UIViewController {
+    
     //MARK: - Variables
-
     var deckList = [Deck]()
-    
     var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    var selectedIndexPath: IndexPath!
     
-    var selectedItem: Int!
     @IBAction func addButton(_ sender: Any) {
         let ac = UIAlertController(title: "New Deck", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
                 
         }
+        
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (alertAction) in
             if let textField = ac.textFields![0].text, textField.count > 5 {
@@ -90,6 +90,11 @@ class DeckViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        
+        collectionView.addGestureRecognizer(longPressGesture)
+        collectionView.addGestureRecognizer(tapGesture)
         
     }
     
@@ -124,21 +129,13 @@ class DeckViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toCardList" {
             let cardListVC = segue.destination as! DeckListController
-            if let index = collectionView.indexPathsForSelectedItems?.first {
-                
-                
-                if let cards = deckList[index.row].cards as? Set<Card> {
-                    let cardsArray = Array(cards)
-                    for card in cardsArray {
-                        print("=> \(card)")
-                    }
-                }
-                cardListVC.deck = deckList[index.row]
-                cardListVC.coreDataStack = self.coreDataStack
-            }
-
+            
+            cardListVC.deck = deckList[selectedIndexPath.row]
+            cardListVC.coreDataStack = self.coreDataStack
+        
         } else if segue.identifier == "toSearchList" {
             let cardListVC = segue.destination as! SearchViewController
             cardListVC.coreDataStack = self.coreDataStack
@@ -147,7 +144,22 @@ class DeckViewController: UIViewController {
     }
     
     @objc func onLongPress (_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("yuuuuuuuuuuuuuuuuuus")
+        guard let index = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else { return }
+        let ac = UIAlertController(title: "Are You Sure?", message: "by deleting this ", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+            self.deckList.remove(at: index.row)
+            self.coreDataStack.saveContext()
+            self.collectionView.reloadData()
+        }))
+     
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(ac, animated: true, completion: nil)
+    }
+    
+    @objc func onTap (_ gestureRecognizer: UITapGestureRecognizer) {
+        selectedIndexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView))
+        performSegue(withIdentifier: "toCardList", sender: self)
     }
 }
 
@@ -164,11 +176,6 @@ extension DeckViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = "deckCollectionCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DeckCollectionCell
-        
-        
-        let longPressRecognizer = UILongPressGestureRecognizer(target: cell, action: #selector(self.onLongPress))
-        
-        cell.addGestureRecognizer(longPressRecognizer)
         
         let deck = deckList[indexPath.row]
         if let colors = deck.color?.split(separator: " "){
@@ -190,10 +197,6 @@ extension DeckViewController: UICollectionViewDataSource {
         
         return cell
         
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = indexPath.row
     }
     
 }

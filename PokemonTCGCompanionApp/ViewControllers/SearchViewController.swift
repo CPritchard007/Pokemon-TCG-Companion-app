@@ -10,6 +10,7 @@ import UIKit
  this screen uses the searchbar thats tutorial can be found here:
     https://www.raywenderlich.com/4363809-uisearchcontroller-tutorial-getting-started
  */
+// display the tappable filters using these enumerated items
 enum SuperTypePlus: String, CaseIterable {
     case all = "All"
     case pokemon = "Pokémon"
@@ -22,31 +23,36 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     //MARK: - Variables    
     let searchController = UISearchController(searchResultsController: nil)
     let pageSize = 20
-    
     var cards = [CardApi]()
     var cardImage = [UIImage]()
     var coreDataStack: CoreDataStack!
     var selectedType: SuperTypePlus = .all
+    var dataSource: UICollectionViewDiffableDataSource<Section, Card>! = nil
+
     var searchbarText: String {
         return searchController.searchBar.text ?? ""
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<Section, Card>! = nil
 
-    
     //MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //MARK: - Properties
+        
+        
+        
+        //MARK: collectionView
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsSelection = true
         
         //TODO: add hidable UISearchController into the pages CollectionView with Scope bar [Pokemon, Energy, Trainer]
-       // MARK: - SearchBar
+       // MARK: SearchBar
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -56,19 +62,23 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         searchController.searchBar.scopeButtonTitles = SuperTypePlus.allCases.map{(item) in
             return item.rawValue
         }
-        
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        
+        // get all cards from the Pokemon API
         query()
     }
+    
+    
+    // MARK: - ViewWillLayoutSubviews
     override func viewWillLayoutSubviews() {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
  
     
-    //MARK: query
+    //MARK: - query
     func query(){
         var urlString: String
 
@@ -111,6 +121,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         collectionView.reloadData()
     }
     
+    //MARK: - updateSearchResults
     func updateSearchResults(for searchController: UISearchController) {
         let searchbar = searchController.searchBar
         
@@ -118,10 +129,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         self.perform(#selector(getCards),with: searchbar, afterDelay: 1)
     }
     
+    //MARK: - getCards
     @objc func getCards(){
         query()
     }
     
+    //MARK: - prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationSegue = segue.destination as? DetailViewController else { return }
         if let index = collectionView.indexPathsForSelectedItems?.first?.row {
@@ -132,17 +145,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
 }
 
-extension SearchViewController: UICollectionViewDelegate {
-    
-}
-
 extension SearchViewController: UICollectionViewDataSource {
         
+    //MARK: - numberOfRowsInSelection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return cards.count
     }
     
+    //MARK: - cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCardCell", for: indexPath) as! SearchCollectionCell
         
@@ -152,25 +163,19 @@ extension SearchViewController: UICollectionViewDataSource {
             cell.imgeView.image = image
 
         }
-        
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-        
-        
-    }
-    
-    
-    
 }
 
 extension SearchViewController: UISearchBarDelegate {
+    
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     
+    
+    //MARK: - selectedButtonWhenChanged
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         
         switch selectedScope {
@@ -192,6 +197,9 @@ extension SearchViewController: UISearchBarDelegate {
 
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
+   
+    
+    //MARK: - sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let sizePerRow: Int = max((Int(collectionView.bounds.width) / 200), 2)
@@ -201,6 +209,8 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellAspect * 3 , height: cellAspect * 4)
     }
     
+    
+    //MARK: - spacing for collections
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0.0
