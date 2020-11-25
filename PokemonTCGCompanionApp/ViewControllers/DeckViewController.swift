@@ -13,7 +13,9 @@ class DeckViewController: UIViewController {
     //MARK: - Variables
 
     var deckList = [Deck]()
-    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    
+    var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    
     var selectedItem: Int!
     @IBAction func addButton(_ sender: Any) {
         let ac = UIAlertController(title: "New Deck", message: nil, preferredStyle: .alert)
@@ -134,7 +136,13 @@ class DeckViewController: UIViewController {
                     }
                 }
                 cardListVC.deck = deckList[index.row]
+                cardListVC.coreDataStack = self.coreDataStack
             }
+
+        } else if segue.identifier == "toSearchList" {
+            let cardListVC = segue.destination as! SearchViewController
+            cardListVC.coreDataStack = self.coreDataStack
+
         }
     }
     

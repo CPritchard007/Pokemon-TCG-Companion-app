@@ -14,7 +14,7 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     
     var card: CardApi!
     var pickerType = Deck()
-    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    var coreDataStack: CoreDataStack!
     var deckList = [Deck]()
     var backgroundColor: UIColor = UIColor()
     var textColor: UIColor = UIColor()
@@ -377,6 +377,7 @@ protocol AddPopoverViewControllerDelegate: class {
 
 class AddPopoverViewController: UIViewController {
     var backgroundColor: UIColor!
+    var textColor: UIColor!
     var deckList: [Deck]!
     var delegate: AddPopoverViewControllerDelegate!
     var quantity = 1

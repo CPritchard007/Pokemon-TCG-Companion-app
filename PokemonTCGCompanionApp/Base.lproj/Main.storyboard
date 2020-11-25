@@ -156,7 +156,7 @@
                             <barButtonItem title="Search" id="VgY-er-uqW">
                                 <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="default"/>
                                 <connections>
-                                    <segue destination="NGl-Uk-0sh" kind="show" id="CbR-RG-Fnc"/>
+                                    <segue destination="NGl-Uk-0sh" kind="show" identifier="toSearchList" id="CbR-RG-Fnc"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus" catalog="system" id="J7A-Tu-fI4">

@@ -14,7 +14,7 @@ class DeckListController: UIViewController {
     var deck: Deck!
     var cards = [Card]()
     var isTournamentLocked: Bool = true
-    lazy var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
+    var coreDataStack: CoreDataStack!
 
     //MARK: - Outlets
     @IBOutlet weak var deckCountLabel: UILabel!
@@ -154,8 +154,9 @@ extension DeckListController: UITableViewDataSource {
         
         
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
-            
+            print("----\(indexPath.section):\(indexPath.row) => \(cell?.idLabel.text)")
         }
+        
         add.backgroundColor = UIColor(named: "secondaryColor")
         add.image = UIImage(systemName: "plus")
         
@@ -163,6 +164,7 @@ extension DeckListController: UITableViewDataSource {
         let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
 
         }
+        
         remove.backgroundColor = UIColor(named: "secondaryColor")
         remove.image = UIImage(systemName: "minus")
         

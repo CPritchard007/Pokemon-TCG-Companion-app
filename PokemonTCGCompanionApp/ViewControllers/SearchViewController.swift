@@ -24,8 +24,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     let pageSize = 20
     var cards = [CardApi]()
     var cardImage = [UIImage]()
-    
-    var selectedType : SuperTypePlus = .all
+    var coreDataStack: CoreDataStack!
+    var selectedType: SuperTypePlus = .all
     var searchbarText: String {
         return searchController.searchBar.text ?? ""
     }
@@ -125,6 +125,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         guard let destinationSegue = segue.destination as? DetailViewController else { return }
         if let index = collectionView.indexPathsForSelectedItems?.first?.row {
             destinationSegue.card = cards[index]
+            destinationSegue.coreDataStack = self.coreDataStack
         }
     }
 
