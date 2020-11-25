@@ -150,8 +150,10 @@ extension DeckListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         //TODO: add and remove from quantity
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
-       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
+      
+        
+        print("\(cell.nameLabel)")
         
         
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in

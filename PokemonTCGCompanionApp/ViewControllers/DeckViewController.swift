@@ -29,32 +29,42 @@ class DeckViewController: UIViewController {
                 newDeck.title = textField
                 
                 
-                switch Int.random(in: 0...10) {
+                switch Int.random(in: 0...9) {
                 case 0:
-                    
+                    print(UIColor.purple.toString())
                     newDeck.color = UIColor.purple.toString()
                 case 1:
+                    print(UIColor.cyan.toString())
                     newDeck.color = UIColor.cyan.toString()
                 case 2:
+                    print(UIColor.red.toString())
                     newDeck.color = UIColor.red.toString()
                 case 3:
+                    print(UIColor.yellow.toString())
                     newDeck.color = UIColor.yellow.toString()
                 case 4:
+                    print(UIColor.green.toString())
                     newDeck.color = UIColor.green.toString()
                 case 5:
+                    print(UIColor.magenta.toString())
                     newDeck.color = UIColor.magenta.toString()
                 case 6:
+                    print(UIColor.orange.toString())
                     newDeck.color = UIColor.orange.toString()
                 case 7:
+                    print(UIColor.brown.toString())
                     newDeck.color = UIColor.brown.toString()
                 case 8:
+                    print(UIColor.blue.toString())
                     newDeck.color = UIColor.blue.toString()
                 case 9:
-                    newDeck.color = UIColor.white.toString()
+                    print(UIColor.white.toString())
+                    newDeck.color = UIColor.systemPink.toString()
                 default:
+                    print(UIColor.white.toString())
                     newDeck.color = UIColor.white.toString()
                 }
-               
+                
                 
                 newDeck.id = UUID()
                 self.coreDataStack.saveContext()
@@ -144,27 +154,25 @@ extension DeckViewController: UICollectionViewDataSource {
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: cell, action: #selector(self.onLongPress))
         
-        
-        
-        
         cell.addGestureRecognizer(longPressRecognizer)
         
         let deck = deckList[indexPath.row]
-
-        if let colors = deck.color?.split(separator: " "), colors.count == 4 {
+        print("Colors at this location => " + deck.color!)
+        if let colors = deck.color?.split(separator: " "){
             // https://www.hackingwithswift.com/example-code/uikit/how-to-recolor-uiimages-using-template-images-and-withrenderingmode
+            
+            print("The New Colors \(colors)")
             
             if let tintedImage = UIImage(named: "packFront") {
                 let tintableImage = tintedImage.withRenderingMode(.alwaysTemplate)
                 cell.frontImage.image = tintableImage
             }
-            if let red = Float(colors[0]), let green = Float(colors[1]), let blue = Float(colors[2]){
-                cell.frontImage.tintColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
-            } else {
-                print("error")
+            if let red = Float(colors[1]), let green = Float(colors[2]), let blue = Float(colors[3]) {
+                cell.frontImage.tintColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
             }
-            
-            
+        }
+        else {
+            print("here")
         }
 
         cell.deckNameLabel.text = deck.title
@@ -202,7 +210,8 @@ extension UIColor {
         guard let component = self.cgColor.components else {return ""}
         var newString = ""
         for comp in component {
-            newString += "\(Int(comp)) "
+            
+            newString += "\(comp) "
         }
         newString.removeLast()
         print(newString)
