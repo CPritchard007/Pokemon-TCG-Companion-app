@@ -41,6 +41,7 @@ class DeckListController: UIViewController {
         super.viewWillAppear(animated)
             
         guard let cardSet = deck.cards as? Set<Card> else { return }
+        
         cards = Array(cardSet)
         var quantityCount = 0
         for item in cards {
@@ -149,31 +150,22 @@ extension DeckListController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        //TODO: add and remove from quantity
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as! DeckListCell
-      
-        
-        print("\(cell.nameLabel)")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckListCell", for: indexPath) as? DeckListCell
         
         
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, nil) in
             
-
         }
         add.backgroundColor = UIColor(named: "secondaryColor")
         add.image = UIImage(systemName: "plus")
         
     
         let remove = UIContextualAction(style: .normal, title: "-") { (UIContextualAction, UIView, nil) in
-            
-            
-            
+
         }
-        
         remove.backgroundColor = UIColor(named: "secondaryColor")
         remove.image = UIImage(systemName: "minus")
         
-    
         let configuration = UISwipeActionsConfiguration(actions: [add, remove])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration

@@ -125,8 +125,14 @@ class DeckViewController: UIViewController {
         if segue.identifier == "toCardList" {
             let cardListVC = segue.destination as! DeckListController
             if let index = collectionView.indexPathsForSelectedItems?.first {
-                fetchRequest()
-                print(deckList[index.row])
+                
+                
+                if let cards = deckList[index.row].cards as? Set<Card> {
+                    let cardsArray = Array(cards)
+                    for card in cardsArray {
+                        print("=> \(card)")
+                    }
+                }
                 cardListVC.deck = deckList[index.row]
             }
         }
@@ -157,12 +163,9 @@ extension DeckViewController: UICollectionViewDataSource {
         cell.addGestureRecognizer(longPressRecognizer)
         
         let deck = deckList[indexPath.row]
-        print("Colors at this location => " + deck.color!)
         if let colors = deck.color?.split(separator: " "){
             // https://www.hackingwithswift.com/example-code/uikit/how-to-recolor-uiimages-using-template-images-and-withrenderingmode
-            
-            print("The New Colors \(colors)")
-            
+                        
             if let tintedImage = UIImage(named: "packFront") {
                 let tintableImage = tintedImage.withRenderingMode(.alwaysTemplate)
                 cell.frontImage.image = tintableImage

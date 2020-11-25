@@ -415,6 +415,8 @@ class AddPopoverViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        for deck in deckList {
+        }
         view.backgroundColor = self.backgroundColor.withAlphaComponent(1)
         quantityField.backgroundColor = .white
     }
