@@ -329,7 +329,7 @@ extension DetailViewController: AddPopoverViewControllerDelegate {
         
         guard let cardSet = deck.cards as? Set<Card> else { return }
         let card = cardSet.first { card -> Bool in
-            print("---- \(self.card.id) == \(card.id) => \(self.card.id == card.id)")
+
             return self.card.id == card.id
         }
         

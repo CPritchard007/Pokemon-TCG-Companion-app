@@ -14,7 +14,7 @@ class DeckListController: UIViewController {
     var deck: Deck!
     var cards = [Card]()
     var localCardSet: Set<Card>!
-    var isTournamentLocked: Bool = true
+    var isTournamentLocked: Bool!
     var coreDataStack: CoreDataStack!
     var pokemon = [Card]()
     var trainer = [Card]()
@@ -27,6 +27,8 @@ class DeckListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isTournamentLocked = deck.tournamentLocked
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,18 +45,15 @@ class DeckListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            
+        
+        
         guard let cardSet = deck.cards as? Set<Card> else { return }
         localCardSet = cardSet
         cards = Array(cardSet)
         
         pokemonReshuffle()
+        quantityCardCount()
         
-        var quantityCount = 0
-        for item in cards {
-            quantityCount += Int(item.quantity)
-        }
-        deckCountLabel.text = "\(quantityCount)/60"
         tableView.reloadData()
     }
     
@@ -62,6 +61,23 @@ class DeckListController: UIViewController {
         pokemon = cards.filter {$0.superType == "Pokémon"}
         trainer = cards.filter {$0.superType == "Trainer"}
         energy = cards.filter {$0.superType == "Energy"}
+    }
+    func quantityCardCount() {
+        var quantityCount = 0
+        for item in cards {
+            quantityCount += Int(item.quantity)
+        }
+        deckCountLabel.text = "\(quantityCount)/60"
+        if quantityCount > 60 , isTournamentLocked == true {
+            deckCountLabel.textColor = .red
+            let ac = UIAlertController(title: "Do you want to turn off Tournament Lock?", message: "A standard card game is locked to a total of 60 cards. Do you Want to turn the warnings off?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Turn Off", style: .default, handler: {_ in self.isTournamentLocked = false}))
+            ac.addAction(UIAlertAction(title: "Keep On", style: .default, handler: nil))
+            
+            present(ac, animated: true, completion: nil)
+            
+        }
+        
     }
     
 }
@@ -170,6 +186,7 @@ extension DeckListController: UITableViewDataSource {
         let add = UIContextualAction(style: .normal, title: "+") { (UIContextualAction, UIView, completion) in
             card.quantity += 1
             tableView.reloadRows(at: [indexPath], with: .none)
+            self.quantityCardCount()
             completion(true)
         }
         add.backgroundColor = UIColor(named: "primaryColor")
@@ -187,7 +204,9 @@ extension DeckListController: UITableViewDataSource {
                         return $0.id == card.id
                     })
                     self.pokemonReshuffle()
+                    self.quantityCardCount()
                     tableView.reloadData()
+                    
                 }))
                 ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 
@@ -196,6 +215,9 @@ extension DeckListController: UITableViewDataSource {
                 card.quantity -= 1
                 tableView.reloadRows(at: [indexPath], with: .fade)
             }
+            
+            self.quantityCardCount()
+
             
             completion(true)
 

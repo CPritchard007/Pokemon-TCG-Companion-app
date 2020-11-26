@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 
-
 class DeckViewController: UIViewController {
     
     //MARK: - Variables
@@ -16,6 +15,8 @@ class DeckViewController: UIViewController {
     var coreDataStack = CoreDataStack(modelName: "PokemonCompanionApplication")
     var selectedIndexPath: IndexPath!
     
+    
+    //MARK: - Outlets
     @IBAction func addButton(_ sender: Any) {
         let ac = UIAlertController(title: "New Deck", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
@@ -132,8 +133,8 @@ class DeckViewController: UIViewController {
         
         if segue.identifier == "toCardList" {
             let cardListVC = segue.destination as! DeckListController
-            
-            cardListVC.deck = deckList[selectedIndexPath.row]
+            guard let index = selectedIndexPath else { return }
+            cardListVC.deck = deckList[index.row]
             cardListVC.coreDataStack = self.coreDataStack
         
         } else if segue.identifier == "toSearchList" {
@@ -160,8 +161,11 @@ class DeckViewController: UIViewController {
     }
     
     @objc func onTap (_ gestureRecognizer: UITapGestureRecognizer) {
-        selectedIndexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView))
+        guard let index = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else { return }
+        
+        selectedIndexPath = index
         performSegue(withIdentifier: "toCardList", sender: self)
+        
     }
 }
 
