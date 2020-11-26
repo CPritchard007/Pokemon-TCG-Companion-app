@@ -88,7 +88,14 @@ class DeckViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    //MARK: ViewDidLoad
+    
+    
+    
+    //MARK: - Functions
+    
+    
+    
+        //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,7 +114,7 @@ class DeckViewController: UIViewController {
         
     }
     
-    //MARK: ViewWillAppear
+        //MARK: ViewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // if the application is comming back to this page, fetch from the coreDataStack and reload the collection
@@ -116,7 +123,7 @@ class DeckViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    //MARK: - ViewWillLayoutSubviews
+        //MARK: - ViewWillLayoutSubviews
     // if the application changes to landscape or vice-versa, the application will invalidate itself, and change the collectionview cell size
     override func viewWillLayoutSubviews() {
         collectionView.collectionViewLayout.invalidateLayout()
@@ -124,7 +131,7 @@ class DeckViewController: UIViewController {
     }
     
     
-    //MARK: FetchRequest
+        //MARK: FetchRequest
     func fetchRequest () {
         // get an instance of the decks
         let fetchRequest: NSFetchRequest<Deck> = Deck.fetchRequest()
@@ -140,15 +147,14 @@ class DeckViewController: UIViewController {
             
         }
     }
-    
-    //MARK: LoadTable
+        //MARK: LoadTable
     func loadTable () {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
     
-    //MARK: Prepare
+        //MARK: Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // if the user is entering into the cardList page
@@ -170,7 +176,7 @@ class DeckViewController: UIViewController {
         }
     }
     
-    //MARK: OnLongPress
+        //MARK: OnLongPress
     @objc func onLongPress (_ gestureRecognizer: UILongPressGestureRecognizer) {
         // is the user longPressing on a card, if not, this is obviously not what was intended, so dont do anything
         guard let index = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else { return }
@@ -190,7 +196,8 @@ class DeckViewController: UIViewController {
         
         self.present(ac, animated: true, completion: nil)
     }
-    //MARK: OnTap
+        
+        //MARK: OnTap
     @objc func onTap (_ gestureRecognizer: UITapGestureRecognizer) {
         
         // is the user tapping on a card, if not, this is obviously not what was intended, so dont do anything

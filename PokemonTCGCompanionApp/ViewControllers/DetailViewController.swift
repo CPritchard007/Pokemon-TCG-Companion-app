@@ -461,6 +461,9 @@ extension AddPopoverViewController : UITextFieldDelegate {
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         quantity = Int(updatedText)!
         return updatedText.count <= 6
+        
     }
 }
+
+
 
