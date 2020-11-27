@@ -5,17 +5,18 @@
 //
 
 import UIKit
-
+//MARK: Enum Section
 enum Section {
     case main
 }
-
+//MARK: - Enum SuperType
 enum SuperType: String, Codable, CaseIterable {
     case pokemon = "Pokémon"
     case trainer = "Trainer"
     case energy = "Energy"
 }
 
+//MARK: - Enum SubType
 enum SubType: String, Codable {
         case stadium = "Stadium"
         case mega = "MEGA"
@@ -39,6 +40,7 @@ enum SubType: String, Codable {
         case restored = "Restored"
 }
 
+//MARK: - Enum Type
 enum Type: String, Codable {
     case colorless = "Colorless"
     case darkness = "Darkness"
@@ -52,6 +54,8 @@ enum Type: String, Codable {
     case psychic = "Psychic"
     case water = "Water"
 }
+
+//MARK: - CardApi
 struct CardApi: Codable, Hashable {
 
     
@@ -65,16 +69,16 @@ struct CardApi: Codable, Hashable {
     
     
     
-    //MARK: - Search INFO
+    //MARK: Search INFO
     let id: String //POKEMON TCG ID
     let name: String // POKEMON NAME
     let supertype: SuperType // ENERGY, TRAINER, POKEMON
     
-    //MARK: -  Display Image
+    //MARK: Display Image
     let imageUrl: String? // LOW RES IMAGE
     let imageUrlHiRes: String?  // HIGH RES IMAGE
     
-    //MARK: - Detailed List Info
+    //MARK: Detailed List Info
     let nationalPokedexNumber: Int? // THE NUMBER THAT POKEMON IS STORED IN THE POKEDEX
     let hp: String?   // HEALTH POINTS
     let types: [Type]? // ENERGY TYPE [FIRE TYPE, FIGHTING TYPE, ETC]

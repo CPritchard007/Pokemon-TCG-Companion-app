@@ -50,7 +50,7 @@
                                         <size key="customSize" width="131" height="182"/>
                                         <connections>
                                             <outlet property="imgeView" destination="ZLt-Cl-AJB" id="kVu-2R-Bta"/>
-                                            <segue destination="1wK-tc-QnB" kind="show" id="oeo-wa-BT2"/>
+                                            <segue destination="1wK-tc-QnB" kind="show" identifier="DetailPage" id="Drd-3W-Oe6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -72,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="io1-aA-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818.840579710145" y="-629.46428571428567"/>
+            <point key="canvasLocation" x="1819" y="-834"/>
         </scene>
         <!--Local Decks-->
         <scene sceneID="tne-QT-ifu">
@@ -86,50 +86,56 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29831096394037077" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nef-fC-rq3">
-                                    <size key="itemSize" width="189" height="202"/>
+                                    <size key="itemSize" width="189" height="265"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" reuseIdentifier="deckCollectionCell" id="PSq-cV-sfJ" customClass="DeckCollectionCell" customModule="PokemonTCGCompanionApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="189" height="230"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="189" height="265"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JJ5-Jq-aZy">
-                                            <rect key="frame" x="0.0" y="0.0" width="189" height="230"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="265"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="049-5T-wUT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="189" height="137.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="packBack" translatesAutoresizingMaskIntoConstraints="NO" id="049-5T-wUT" userLabel="Deck Back Image">
+                                                    <rect key="frame" x="19" y="10" width="151" height="150"/>
                                                     <color key="tintColor" name="secondaryColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="137.5" id="5E0-2Y-uVv"/>
+                                                        <constraint firstAttribute="width" constant="150" id="PeU-aV-73z"/>
+                                                        <constraint firstAttribute="height" constant="150" id="cUM-PP-MPz"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-PX-dfC">
-                                                    <rect key="frame" x="10" y="145.5" width="169" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="O06-ct-El5"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="10" y="170" width="169" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="packFront" translatesAutoresizingMaskIntoConstraints="NO" id="T6F-PI-oSJ" userLabel="Deck Front Image">
+                                                    <rect key="frame" x="19" y="10" width="151" height="150"/>
+                                                    <color key="tintColor" name="secondaryColor"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="049-5T-wUT" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" id="1Be-Ih-Yma"/>
+                                                <constraint firstItem="T6F-PI-oSJ" firstAttribute="top" secondItem="049-5T-wUT" secondAttribute="top" id="2w9-pA-koZ"/>
+                                                <constraint firstItem="T6F-PI-oSJ" firstAttribute="trailing" secondItem="049-5T-wUT" secondAttribute="trailing" id="58d-xa-2pi"/>
+                                                <constraint firstItem="T6F-PI-oSJ" firstAttribute="leading" secondItem="049-5T-wUT" secondAttribute="leading" id="GjA-LM-Enq"/>
                                                 <constraint firstAttribute="trailing" secondItem="KKn-PX-dfC" secondAttribute="trailing" constant="10" id="HVs-NX-s27"/>
-                                                <constraint firstItem="049-5T-wUT" firstAttribute="top" secondItem="JJ5-Jq-aZy" secondAttribute="top" id="VJH-Ii-2QB"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KKn-PX-dfC" secondAttribute="bottom" constant="10" id="aPY-kd-kzO"/>
-                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="top" secondItem="049-5T-wUT" secondAttribute="bottom" constant="8" id="lid-U1-z3A"/>
+                                                <constraint firstItem="049-5T-wUT" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" constant="19" id="MFW-QI-Py7"/>
+                                                <constraint firstItem="T6F-PI-oSJ" firstAttribute="bottom" secondItem="049-5T-wUT" secondAttribute="bottom" id="U4L-KK-FpL"/>
+                                                <constraint firstItem="049-5T-wUT" firstAttribute="top" secondItem="JJ5-Jq-aZy" secondAttribute="top" constant="10" id="iFK-z1-LRp"/>
+                                                <constraint firstItem="KKn-PX-dfC" firstAttribute="top" secondItem="049-5T-wUT" secondAttribute="bottom" constant="10" id="mqL-rK-seO"/>
                                                 <constraint firstItem="KKn-PX-dfC" firstAttribute="leading" secondItem="JJ5-Jq-aZy" secondAttribute="leading" constant="10" id="r2M-n5-QIs"/>
-                                                <constraint firstAttribute="trailing" secondItem="049-5T-wUT" secondAttribute="trailing" id="zjN-oQ-3sa"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KKn-PX-dfC" secondAttribute="bottom" priority="250" constant="10" id="rSN-u7-hHi"/>
+                                                <constraint firstAttribute="trailing" secondItem="049-5T-wUT" secondAttribute="trailing" constant="19" id="vpF-k2-MQc"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="189" height="230"/>
+                                        <size key="customSize" width="189" height="265"/>
                                         <connections>
-                                            <outlet property="deckImage" destination="049-5T-wUT" id="4RY-8p-QFa"/>
                                             <outlet property="deckNameLabel" destination="KKn-PX-dfC" id="cKx-Sr-qSB"/>
+                                            <outlet property="frontImage" destination="T6F-PI-oSJ" id="9Ur-p6-PGR"/>
                                             <segue destination="sra-t7-i18" kind="show" identifier="toCardList" id="5Ki-g5-rVr"/>
                                         </connections>
                                     </collectionViewCell>
@@ -150,7 +156,7 @@
                             <barButtonItem title="Search" id="VgY-er-uqW">
                                 <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="default"/>
                                 <connections>
-                                    <segue destination="NGl-Uk-0sh" kind="show" id="CbR-RG-Fnc"/>
+                                    <segue destination="NGl-Uk-0sh" kind="show" identifier="toSearchList" id="CbR-RG-Fnc"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="plus" catalog="system" id="J7A-Tu-fI4">
@@ -249,7 +255,6 @@
                                             <outlet property="idLabel" destination="uek-a7-0Pb" id="kiq-ux-6E7"/>
                                             <outlet property="nameLabel" destination="ARx-O9-y4Q" id="M1b-Qc-v7m"/>
                                             <outlet property="quantityLabel" destination="J1z-fQ-5zY" id="oS2-eV-ABX"/>
-                                            <segue destination="1wK-tc-QnB" kind="show" id="PCT-qy-7v4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -742,7 +747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmB-LF-1sp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576.811594202899" y="-629.46428571428567"/>
+            <point key="canvasLocation" x="2584" y="-361"/>
         </scene>
         <!--Add Popover View Controller-->
         <scene sceneID="D9q-q3-yGt">
@@ -754,6 +759,12 @@
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBY-OC-MgY">
                                 <rect key="frame" x="0.0" y="60" width="414" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN0-Ke-RbM">
                                 <rect key="frame" x="20" y="296" width="374" height="21.5"/>
@@ -845,14 +856,17 @@
                             <constraint firstItem="vve-M4-eb7" firstAttribute="leading" secondItem="ady-I1-Zog" secondAttribute="leading" constant="20" id="vB7-92-GfN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uVx-I0-o6X"/>
                     <connections>
+                        <outlet property="addToDeckLabel" destination="vve-M4-eb7" id="DdY-Xk-TSa"/>
                         <outlet property="deckPicker" destination="uBY-OC-MgY" id="uN4-1i-zaT"/>
                         <outlet property="quantityField" destination="0hj-0d-s8f" id="c5b-xf-vH3"/>
+                        <outlet property="quantityLabel" destination="ZN0-Ke-RbM" id="ZY3-9c-sJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fa0-bP-AjF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3320" y="-629"/>
+            <point key="canvasLocation" x="3352" y="-834"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ERp-T4-Og4">
@@ -879,17 +893,16 @@
             <point key="canvasLocation" x="283" y="88"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="PCT-qy-7v4"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>
         <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="packBack" width="500" height="491"/>
+        <image name="packFront" width="500" height="491"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">
-            <color red="0.69803921568627447" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8784313725490196" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryColor">
             <color red="0.39899998903274536" green="0.46000000834465027" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

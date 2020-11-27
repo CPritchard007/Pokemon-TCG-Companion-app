@@ -15,12 +15,14 @@
         <relationship name="decks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck"/>
     </entity>
     <entity name="Deck" representedClassName="Deck" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="UIColor"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="tournamentLocked" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="decks" inverseEntity="Card"/>
     </entity>
     <elements>
         <element name="Card" positionX="-54" positionY="-9" width="128" height="223"/>
-        <element name="Deck" positionX="-27" positionY="72" width="128" height="88"/>
+        <element name="Deck" positionX="-27" positionY="72" width="128" height="118"/>
     </elements>
 </model>

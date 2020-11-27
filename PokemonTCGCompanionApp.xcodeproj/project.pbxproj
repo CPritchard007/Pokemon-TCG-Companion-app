@@ -15,8 +15,6 @@
 		267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */; };
 		26844565255B4F6A00D2A4EA /* DeckListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844564255B4F6A00D2A4EA /* DeckListCell.swift */; };
 		26844568255B501600D2A4EA /* DeckListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844567255B501600D2A4EA /* DeckListController.swift */; };
-		26844572255B86CC00D2A4EA /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */; };
-		26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844571255B86CC00D2A4EA /* ImageCache.swift */; };
 		2684457B255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26844579255C482500D2A4EA /* PokemonCompanionApplication.xcdatamodeld */; };
 		26844582255C4BA400D2A4EA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26844581255C4BA400D2A4EA /* CoreDataStack.swift */; };
 		269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269764FD2536785600D6FF08 /* AppDelegate.swift */; };
@@ -40,8 +38,6 @@
 		267E50D8254FBA3A00717B5F /* DeckCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionCell.swift; sourceTree = "<group>"; };
 		26844564255B4F6A00D2A4EA /* DeckListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListCell.swift; sourceTree = "<group>"; };
 		26844567255B501600D2A4EA /* DeckListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListController.swift; sourceTree = "<group>"; };
-		26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageURLProtocol.swift; sourceTree = "<group>"; };
-		26844571255B86CC00D2A4EA /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		2684457A255C482500D2A4EA /* pokemonCompanionApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pokemonCompanionApp.xcdatamodel; sourceTree = "<group>"; };
 		26844581255C4BA400D2A4EA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		269764FA2536785600D6FF08 /* PokemonTCGCompanionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTCGCompanionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,15 +70,6 @@
 			children = (
 			);
 			path = Layouts;
-			sourceTree = "<group>";
-		};
-		2684456F255B86AC00D2A4EA /* Image Cache */ = {
-			isa = PBXGroup;
-			children = (
-				26844571255B86CC00D2A4EA /* ImageCache.swift */,
-				26844570255B86CC00D2A4EA /* ImageURLProtocol.swift */,
-			);
-			path = "Image Cache";
 			sourceTree = "<group>";
 		};
 		26844578255C480F00D2A4EA /* DataModel */ = {
@@ -118,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				26844578255C480F00D2A4EA /* DataModel */,
-				2684456F255B86AC00D2A4EA /* Image Cache */,
 				269765282538E08400D6FF08 /* CustomCells */,
 				2697651D2538B8AC00D6FF08 /* ViewControllers */,
 				2697651325367CF200D6FF08 /* API */,
@@ -245,7 +231,6 @@
 				260892C8256C721B000D989A /* Card+CoreDataProperties.swift in Sources */,
 				26844568255B501600D2A4EA /* DeckListController.swift in Sources */,
 				267E50D9254FBA3A00717B5F /* DeckCollectionCell.swift in Sources */,
-				26844572255B86CC00D2A4EA /* ImageURLProtocol.swift in Sources */,
 				269764FE2536785600D6FF08 /* AppDelegate.swift in Sources */,
 				2697651925367D3E00D6FF08 /* CardApi.swift in Sources */,
 				260892C7256C721B000D989A /* Card+CoreDataClass.swift in Sources */,
@@ -257,7 +242,6 @@
 				26A4856C253BB7F400F685B1 /* DetailViewController.swift in Sources */,
 				26844565255B4F6A00D2A4EA /* DeckListCell.swift in Sources */,
 				26BA83B9253BF4AB00D9E4A1 /* AttackTableviewCell.swift in Sources */,
-				26844573255B86CC00D2A4EA /* ImageCache.swift in Sources */,
 				260892C6256C721B000D989A /* Deck+CoreDataProperties.swift in Sources */,
 				267E50D6254FB6F600717B5F /* DeckViewController.swift in Sources */,
 			);
