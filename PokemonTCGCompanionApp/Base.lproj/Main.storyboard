@@ -50,7 +50,7 @@
                                         <size key="customSize" width="131" height="182"/>
                                         <connections>
                                             <outlet property="imgeView" destination="ZLt-Cl-AJB" id="kVu-2R-Bta"/>
-                                            <segue destination="1wK-tc-QnB" kind="show" id="oeo-wa-BT2"/>
+                                            <segue destination="1wK-tc-QnB" kind="show" identifier="DetailPage" id="Drd-3W-Oe6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -72,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="io1-aA-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818.840579710145" y="-629.46428571428567"/>
+            <point key="canvasLocation" x="1819" y="-834"/>
         </scene>
         <!--Local Decks-->
         <scene sceneID="tne-QT-ifu">
@@ -255,7 +255,6 @@
                                             <outlet property="idLabel" destination="uek-a7-0Pb" id="kiq-ux-6E7"/>
                                             <outlet property="nameLabel" destination="ARx-O9-y4Q" id="M1b-Qc-v7m"/>
                                             <outlet property="quantityLabel" destination="J1z-fQ-5zY" id="oS2-eV-ABX"/>
-                                            <segue destination="1wK-tc-QnB" kind="show" id="PCT-qy-7v4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -748,7 +747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmB-LF-1sp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576.811594202899" y="-629.46428571428567"/>
+            <point key="canvasLocation" x="2584" y="-361"/>
         </scene>
         <!--Add Popover View Controller-->
         <scene sceneID="D9q-q3-yGt">
@@ -857,6 +856,7 @@
                             <constraint firstItem="vve-M4-eb7" firstAttribute="leading" secondItem="ady-I1-Zog" secondAttribute="leading" constant="20" id="vB7-92-GfN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uVx-I0-o6X"/>
                     <connections>
                         <outlet property="addToDeckLabel" destination="vve-M4-eb7" id="DdY-Xk-TSa"/>
                         <outlet property="deckPicker" destination="uBY-OC-MgY" id="uN4-1i-zaT"/>
@@ -866,7 +866,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fa0-bP-AjF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3320" y="-629"/>
+            <point key="canvasLocation" x="3352" y="-834"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ERp-T4-Og4">
@@ -893,9 +893,6 @@
             <point key="canvasLocation" x="283" y="88"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="oeo-wa-BT2"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="TypeFire" width="150" height="150"/>
         <image name="abilityImage" width="250" height="100"/>

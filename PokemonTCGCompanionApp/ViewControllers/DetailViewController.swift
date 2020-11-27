@@ -406,9 +406,7 @@ protocol AddPopoverViewControllerDelegate: class {
 
 // MARK: AddPopoverViewController
 class AddPopoverViewController: UIViewController {
-    
-   
-    
+
     //MARK: - Popover Variables
     var backgroundColor: UIColor!
     var textColor: UIColor!
