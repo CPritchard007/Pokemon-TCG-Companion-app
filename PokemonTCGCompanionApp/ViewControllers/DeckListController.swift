@@ -69,14 +69,14 @@ class DeckListController: UIViewController {
         tableView.reloadData()
     }
     
-        //MARK: pokemonReshuffle
+        //MARK: PokemonReshuffle
     func pokemonReshuffle () {
         // get whether the card is of subtype pokemon, trainer, or energy
         pokemon = cards.filter {$0.superType == "Pokémon"}
         trainer = cards.filter {$0.superType == "Trainer"}
         energy = cards.filter {$0.superType == "Energy"}
     }
-        //MARK: quantityCount
+        //MARK: QuantityCount
     func quantityCardCount() -> Bool{
         // set a default value of quantity count
         var quantityCount = 0
@@ -132,7 +132,7 @@ extension DeckListController: UITableViewDataSource {
         return 3
     }
     
-    
+    //MARK: titleForHeader
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // set section headers
         switch section {
@@ -147,7 +147,7 @@ extension DeckListController: UITableViewDataSource {
         }
     }
     
-    
+    //MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // get the counts of each section
         switch section {
@@ -164,6 +164,7 @@ extension DeckListController: UITableViewDataSource {
         
     }
     
+    //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "DeckListCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeckListCell
@@ -205,6 +206,8 @@ extension DeckListController: UITableViewDataSource {
         return cell
     }
 
+    
+    //MARK: trailingSwipeAction
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         // get current card that is being edited with trailing swipe actions
@@ -292,13 +295,15 @@ extension DeckListController: UITableViewDataSource {
         return configuration
     }
     
+    
+    //MARK: didEndEditing
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         // when the swipe ends, it will save the context of the new quantity
         self.coreDataStack.saveContext()
     }
-    
 }
 
+//MARK: - TV Delegate
 extension DeckListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         // this is just to display the header as blue, and the color as white
@@ -307,6 +312,5 @@ extension DeckListController: UITableViewDelegate {
             headerView.textLabel?.textColor = UIColor.white
         
     }
-
 }
 
